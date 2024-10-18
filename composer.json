@@ -1,0 +1,10 @@
+{
+    "name": "kacper/laravel-project",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Kacper\\LaravelProject\\": "src/"
+        }
+    },
+    "require": {}
+}
