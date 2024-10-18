@@ -14,6 +14,8 @@ services:
       XDEBUG_CONFIG: "client_host=host.docker.internal"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    networks:
+      - laravel
 
   web:
     image: nginx:alpine
@@ -25,6 +27,8 @@ services:
       - ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - app
+    networks:
+      - laravel
 
   postgres:
     image: postgres:13
@@ -36,6 +40,12 @@ services:
       POSTGRES_DB: laravel
       POSTGRES_USER: laravel
       POSTGRES_PASSWORD: secret
+    networks:
+      - laravel
+
+networks:
+  laravel:
+    external: true
 
 volumes:
   postgres_data:
