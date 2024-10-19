@@ -1,5 +1,5 @@
-NETWORK:=laravel
-CONTAINER_APP:=app
+NETWORK:=larvel-project
+CONTAINER_APP:=php-fpm
 DOCKER_COMPOSE_COMMAND:=$(if $(shell command -v compose), docker compose, docker-compose)
 
 # Initialize the application
