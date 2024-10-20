@@ -1,5 +1,5 @@
 NETWORK:=larvel-project
-CONTAINER_APP:=php-fpm
+CONTAINER_APP:=app
 DOCKER_COMPOSE_COMMAND:=$(if $(shell command -v compose), docker compose, docker-compose)
 
 # Initialize the application
@@ -37,3 +37,8 @@ start:
 stop:
 	$(DOCKER_COMPOSE_COMMAND) down
 
+npm-install:
+	$(DOCKER_COMPOSE_COMMAND) exec $(CONTAINER_APP) npm install
+
+npm-run-dev:
+	$(DOCKER_COMPOSE_COMMAND) exec $(CONTAINER_APP) npm run dev

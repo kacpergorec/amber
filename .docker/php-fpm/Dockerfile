@@ -1,6 +1,6 @@
 # Copied from cyberduck/php-fpm-laravel
 #https://github.com/Cyber-Duck/php-fpm-laravel/blob/8.1/Dockerfile
-FROM php:8.3-fpm
+FROM php:8.3-fpm as os
 
 MAINTAINER support@cyber-duck.co.uk
 
@@ -73,6 +73,11 @@ RUN pecl install memcached && docker-php-ext-enable memcached
 RUN curl -s http://getcomposer.org/installer | php && \
     echo "export PATH=${PATH}:/var/www/vendor/bin" >> ~/.bashrc && \
     mv composer.phar /usr/local/bin/composer
+
+# Install npm and npx
+RUN apt-get install -y npm && \
+    npm install -g npx
+
 # Source the bash
 RUN . ~/.bashrc
 
