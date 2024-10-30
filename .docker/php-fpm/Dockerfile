@@ -24,8 +24,14 @@ RUN apt-get update && \
         libxml2-dev \
         libreadline-dev \
         libgmp-dev \
-        mariadb-client \
         unzip
+
+# Install Postgres 17 client
+RUN apt-get install -y wget gnupg2 lsb-release && \
+    wget --no-verbose -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+    echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
+    apt-get update && \
+    apt-get install -y postgresql-client-17
 
 # Install soap extention
 RUN docker-php-ext-install soap
