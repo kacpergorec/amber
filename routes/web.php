@@ -9,7 +9,7 @@ Route::get('dashboard', DashboardController::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::view('profile', 'profile')
+Route::view('profile', 'livewire.profile')
     ->middleware(['auth'])
     ->name('profile');
 
