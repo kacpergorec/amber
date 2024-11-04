@@ -47,9 +47,9 @@ new #[Layout('layouts.guest')] class extends Component
     @endif
 
     <div class="mt-4 flex items-center justify-between">
-        <x-primary-button wire:click="sendVerification">
+        <button class='btn btn-primary' wire:click="sendVerification">
             {{ __('Resend Verification Email') }}
-        </x-primary-button>
+        </button>
 
         <button wire:click="logout" type="submit" class="underline text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-zinc-800">
             {{ __('Log Out') }}

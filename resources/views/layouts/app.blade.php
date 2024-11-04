@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
       x-data="{ darkMode: false }"
+      class="light"
+      data-theme="light"
       x-bind:class="{'dark' : darkMode === true}"
+      x-bind:data-theme="darkMode ? 'dark' : 'light'"
       x-init="
         if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            localStorage.setItem('darkMode', JSON.stringify(true));
+            localStorage.setItem('darkMode', JSON.stringify(value));
+            document.documentElement.setAttribute('data-theme', value ? 'dark' : 'light');
         }
         darkMode = JSON.parse(localStorage.getItem('darkMode'));
-        $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+        $watch('darkMode', value => {
+            localStorage.setItem('darkMode', JSON.stringify(value));
+            document.documentElement.setAttribute('data-theme', value ? 'dark' : 'light');
+        })"
 >
 <head>
     <meta charset="utf-8">
@@ -27,7 +34,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased text-primary-950 dark:text-primary-50">
-<div class="min-h-screen bg-zinc-100 dark:bg-zinc-900">
+<div class="min-h-screen bg-base-100">
     <livewire:layout.navigation/>
 
     <!-- Page Content -->

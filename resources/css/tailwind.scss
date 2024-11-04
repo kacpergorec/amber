@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@each $color in ['success', 'danger', 'warning', 'info'] {
+    .btn-#{$color}, .alert-#{$color}, .badge-#{$color} {
+        color: #FFFBFA;
+    }
+}
+
