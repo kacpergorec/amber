@@ -36,5 +36,4 @@ class Post extends Model
         $this->published_at = now();
         $this->save();
     }
-
 }

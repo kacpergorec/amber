@@ -45,6 +45,10 @@
                 @endforeach
                 </tbody>
             </table>
+
+            <div class="px-3 pt-4">
+                {{$posts->links('components.pagination')}}
+            </div>
         </div>
     </div>
 </x-app-layout>
