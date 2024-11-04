@@ -20,5 +20,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => 'test',
         ]);
+
+        $this->call([
+            PostSeeder::class,
+        ]);
     }
 }

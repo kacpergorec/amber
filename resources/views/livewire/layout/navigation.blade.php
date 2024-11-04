@@ -15,7 +15,7 @@ new class extends Component {
     }
 }; ?>
 
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="bg-white dark:bg-zinc-800 border-b border-zinc-100 dark:border-zinc-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -23,7 +23,7 @@ new class extends Component {
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"/>
+                        <x-application-logo class="block h-9 w-auto fill-current text-zinc-800 dark:text-zinc-200"/>
                     </a>
                 </div>
 
@@ -32,15 +32,32 @@ new class extends Component {
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-dropdown align="middle" hoverable>
+                        <x-slot name="trigger">
+                            <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')" wire:navigate>
+                                {{ __('Posts') }}
+                            </x-nav-link>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('posts.create')" :active="request()->routeIs('posts.create')" wire:navigate>
+                                {{ __('Create') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('posts.index')" :active="request()->routeIs('posts.index')" wire:navigate>
+                                {{ __('List') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
+                <x-dropdown align="right">
                     <x-slot name="trigger">
                         <button
-                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-zinc-500 dark:text-zinc-400 bg-white dark:bg-zinc-800 hover:text-zinc-700 dark:hover:text-zinc-300 focus:outline-none transition ease-in-out duration-150">
                             <div x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name"
                                  x-on:profile-updated.window="name = $event.detail.name"></div>
 
@@ -76,7 +93,7 @@ new class extends Component {
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open"
-                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
+                        class="inline-flex items-center justify-center p-2 rounded-md text-zinc-400 dark:text-zinc-500 hover:text-zinc-500 dark:hover:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 focus:outline-none focus:bg-zinc-100 dark:focus:bg-zinc-900 focus:text-zinc-500 dark:focus:text-zinc-400 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
                               stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -95,15 +112,20 @@ new class extends Component {
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')"
+                                   wire:navigate>
+                {{ __('Posts') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+        <div class="pt-4 pb-1 border-t border-zinc-200 dark:border-zinc-600">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800 dark:text-gray-200"
+                <div class="font-medium text-base text-zinc-800 dark:text-zinc-200"
                      x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name"
                      x-on:profile-updated.window="name = $event.detail.name"></div>
-                <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
+                <div class="font-medium text-sm text-zinc-500">{{ auth()->user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
