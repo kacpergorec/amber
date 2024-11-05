@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "tailwind:watch": "filename=$(ls ./public/build/assets/tailwind-*.css | head -n 1) && [ -f ./public/build/assets/tailwind.css ] && rm ./public/build/assets/tailwind.css || true && npx tailwindcss -i resources/css/tailwind.css -o $filename --watch"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
@@ -13,6 +14,7 @@
         "daisyui": "^4.12.14",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.47",
+        "postcss-scss": "^4.0.9",
         "sass-embedded": "^1.80.6",
         "tailwindcss": "^3.4.14",
         "vite": "^5.0"

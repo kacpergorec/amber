@@ -16,7 +16,7 @@ class PostSeeder extends Seeder
     {
         $faker = Factory::create();
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             Post::factory()->create([
                 'title' => $faker->sentence,
                 'author_id' => User::first()->id,

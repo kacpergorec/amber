@@ -11,11 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PostController extends Controller
 {
-    public function index(Request $request): View
+    public function index(): View
     {
-        return view('livewire.pages.posts.index', [
-            'posts' => Post::paginate($request->get('per_page', 10)),
-        ]);
+        return view('livewire.pages.posts.index');
     }
 
     public function create()
@@ -45,6 +43,8 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('posts.index');
     }
 }

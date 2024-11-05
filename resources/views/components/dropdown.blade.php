@@ -13,7 +13,7 @@ $width = match ($width) {
 };
 @endphp
 
-<div class="relative whitespace-nowrap inline-flex items-center" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false" @mouseover="if ({{ $hoverable }}) open = true" @mouseleave="if ({{ $hoverable }}) open = false">
+<div class="relative whitespace-nowrap inline-flex items-center" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false" @mouseover="if ({{ $hoverable ?: 'false' }}) open = true" @mouseleave="if ({{ $hoverable ?: 'false' }}) open = false">
     <div @click="open = ! open" class="h-full flex">
         {{ $trigger }}
     </div>
