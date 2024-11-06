@@ -1,7 +1,20 @@
-<div class="card bg-white dark:bg-base-300 overflow-x-auto p-3">
+<div class="card bg-white dark:bg-base-300 overflow-visible p-3">
     <table class="table">
         <thead>
         <tr>
+            <th>
+                <div class="dropdown">
+                    <label>
+                        <button class="checkbox checkbox-sm dark:bg-base-300" style="max-width: 20px; max-height: 20px"/>
+                    </label>
+                    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box"
+                        wire:target="selectAll" wire:loading.class="hidden">
+                        <li><a href="#" class="whitespace-nowrap"
+                               wire:click="selectAll({{$posts->currentPage()}})">{{__('Every on this page')}}</a></li>
+                        <li><a href="#" class="whitespace-nowrap" wire:click="selectAll()">{{__('Everything')}}</a></li>
+                    </ul>
+                </div>
+            </th>
             <th>#</th>
             <th>{{__('Title')}}</th>
             <th>{{__('Status')}}</th>
@@ -12,8 +25,20 @@
         <tbody>
         @foreach($posts as $key => $post)
             <tr class="ease-in-out" wire:loading.class="hidden" wire:target="deletePostConfirm('{{$post->id}}')">
+                <td>
+                    <input class="checkbox checkbox-sm dark:bg-base-300"
+                           id="select-{{$post->id}}"
+                           type="checkbox"
+                           checked="{{ in_array($post->id, $selectedPosts) }}"
+                           wire:model="selectedPosts"
+                           value="{{ $post->id }}"
+
+                    />
+                </td>
                 <td class="text-zinc-400">
-                    {{++$key}}
+                    <span x-data="{ id: '{{ $post->id }}' }" x-on:click="navigator.clipboard.writeText(id)" class="select-none cursor-pointer">
+                        {{ ++$key }}
+                    </span>
                 </td>
                 <td>
                     <a href="{{route('posts.edit',$post)}}" class="link link-hover">
@@ -38,7 +63,6 @@
                             {{__('Delete')}}
                         </a>
                     </div>
-
                     <x-modal name="confirm-delete-{{ $post->id }}" :show="false">
                         <div class="p-6 flex justify-between items-center">
                             <h2 class="text-lg font-medium text-zinc-900 dark:text-zinc-100">
@@ -63,7 +87,7 @@
         </tbody>
     </table>
 
-    <div class="px-3 pt-4">
+    <div class="px-3 pt-6 flex justify-between">
         {{$posts->links('livewire.layout.pagination')}}
     </div>
 </div>
