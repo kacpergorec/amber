@@ -43,9 +43,13 @@ class PostTable extends Component
 
         $this->selectedPosts = array_values($this->selectedPosts);
 
-        $this->dispatch('notify', 'info', sprintf('%d posts selected', count($this->selectedPosts) ?: 'No'));
-    }
+        $message = sprintf(
+            '%s posts selected',
+            count($this->selectedPosts) ?: 'No'
+        );
 
+        $this->dispatch('notify', 'info', $message);
+    }
 
 
     public function setPerPage(int $perPage): void
