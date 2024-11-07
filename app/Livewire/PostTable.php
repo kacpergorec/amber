@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Enums\TableSelectionActionType;
 use App\Handlers\PostDelete;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
@@ -11,6 +12,8 @@ use Symfony\Component\Uid\Uuid;
 
 class PostTable extends Component
 {
+    //todo add interface, tableSelecion, and paginationSize maybe?
+
     use WithPagination;
 
     public $perPage = 10;
@@ -50,7 +53,6 @@ class PostTable extends Component
         $this->dispatch('notify', 'info', $message);
     }
 
-
     public function setPerPage(int $perPage): void
     {
         $this->perPage = $perPage;
@@ -65,6 +67,20 @@ class PostTable extends Component
         } catch (\Throwable $e) {
             $this->dispatch('notify', 'error', 'Failed to delete post');
         }
+    }
+
+    public function tableSelectionAction(TableSelectionActionType $type): void
+    {
+        //todo handle the action CQRS
+
+        $message = sprintf(
+            '%s posts handled successfully',
+            count($this->selectedPosts) ?: 'No'
+        );
+
+        $this->dispatch('notify', 'success', $message);
+
+        $this->selectedPosts = [];
     }
 
     public function render(): View

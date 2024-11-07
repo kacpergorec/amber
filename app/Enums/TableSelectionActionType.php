@@ -15,4 +15,12 @@ enum TableSelectionActionType: string
             self::PUBLISH => 'Publish selected',
         };
     }
+
+    public function getLevel(): string
+    {
+        return match ($this) {
+            self::DELETE => 'error',
+            self::PUBLISH => 'success',
+        };
+    }
 }
