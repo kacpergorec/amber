@@ -97,6 +97,6 @@
     </table>
 
     <div class="px-3 pt-6 flex justify-between">
-        {{$posts->links('livewire.layout.pagination')}}
+        {{$posts->links('livewire.components.pagination')}}
     </div>
 </div>

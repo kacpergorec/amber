@@ -39,7 +39,7 @@
 </head>
 <body class="font-sans antialiased text-primary-950 dark:text-primary-50">
 <div class="min-h-screen bg-base-100">
-    <livewire:layout.navigation/>
+    <livewire:component.navigation/>
     <livewire:notification/>
     <main>
         {{ $slot }}
