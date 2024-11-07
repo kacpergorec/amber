@@ -1,5 +1,9 @@
-@each $color in ['success', 'error', 'warning', 'info','secondary'] {
-  .btn-#{$color}, .alert-#{$color}, .badge-#{$color} {
-    color: #FFFBFA;
+@import 'boxicons/css/boxicons.min.css';
+
+@each $color in [ 'success', 'error', 'warning', 'info', 'secondary'] {
+  .btn-#{$color},
+  .alert-#{$color},
+  .badge-#{$color} {
+    color: #fffbfa;
   }
 }

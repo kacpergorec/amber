@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Enums\SelectionType;
 use App\Handlers\PostDelete;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;

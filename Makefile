@@ -46,6 +46,5 @@ npm-run-dev:
 build-front:
 	$(DOCKER_COMPOSE_COMMAND) exec $(CONTAINER_APP) npm run build
 
-# Development command for quickly building front-end assets
-tailwind-watch:
-	$(DOCKER_COMPOSE_COMMAND) exec $(CONTAINER_APP) npm run tailwind:watch
+prettier:
+	$(DOCKER_COMPOSE_COMMAND) exec $(CONTAINER_APP) npm run prettier

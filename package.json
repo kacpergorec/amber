@@ -1,22 +1,27 @@
 {
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "build": "vite build",
-        "dev": "vite",
-        "tailwind:watch": "filename=$(ls ./public/build/assets/tailwind-*.css | head -n 1) && [ -f ./public/build/assets/tailwind.css ] && rm ./public/build/assets/tailwind.css || true && npx tailwindcss -i resources/css/tailwind.css -o $filename --watch"
-    },
-    "devDependencies": {
-        "@tailwindcss/forms": "^0.5.2",
-        "autoprefixer": "^10.4.20",
-        "axios": "^1.7.4",
-        "concurrently": "^9.0.1",
-        "daisyui": "^4.12.14",
-        "laravel-vite-plugin": "^1.0",
-        "postcss": "^8.4.47",
-        "postcss-scss": "^4.0.9",
-        "sass-embedded": "^1.80.6",
-        "tailwindcss": "^3.4.14",
-        "vite": "^5.0"
-    }
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "prettier": "prettier --write ."
+  },
+  "devDependencies": {
+    "@shufo/prettier-plugin-blade": "^1.14.1",
+    "@tailwindcss/forms": "^0.5.2",
+    "autoprefixer": "^10.4.20",
+    "axios": "^1.7.4",
+    "concurrently": "^9.0.1",
+    "daisyui": "^4.12.14",
+    "laravel-vite-plugin": "^1.0",
+    "postcss": "^8.4.47",
+    "postcss-scss": "^4.0.9",
+    "prettier": "^3.3.3",
+    "sass-embedded": "^1.80.6",
+    "tailwindcss": "^3.4.14",
+    "vite": "^5.0"
+  },
+  "dependencies": {
+    "boxicons": "^2.1.4"
+  }
 }
