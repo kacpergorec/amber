@@ -3,7 +3,7 @@ declare (strict_types=1);
 
 namespace App\Enums;
 
-enum TableSelectionActionType: string
+enum BulkActionType: string
 {
     case DELETE = 'delete';
     case PUBLISH = 'publish';

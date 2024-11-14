@@ -2,7 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Enums\TableSelectionActionType;
+use App\Enums\BulkActionType;
+use App\Handlers\PostBulkOperator;
 use App\Handlers\PostDelete;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
@@ -69,14 +70,20 @@ class PostTable extends Component
         }
     }
 
-    public function tableSelectionAction(TableSelectionActionType $type): void
+    public function tableSelectionAction(BulkActionType $type, PostBulkOperator $operator): void
     {
-        //todo handle the action CQRS
-
         $message = sprintf(
             '%s posts handled successfully',
             count($this->selectedPosts) ?: 'No'
         );
+
+        try {
+            $operator->handle($this->selectedPosts, $type);
+        } catch (\Throwable $e) {
+            $verb = mb_strtolower($type->getLabel());
+            $this->dispatch('notify', 'error', "Failed to $verb posts");
+            return;
+        }
 
         $this->dispatch('notify', 'success', $message);
 
