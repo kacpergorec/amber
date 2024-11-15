@@ -48,3 +48,6 @@ build-front:
 
 prettier:
 	$(DOCKER_COMPOSE_COMMAND) exec $(CONTAINER_APP) npm run prettier
+
+tests:
+	$(DOCKER_COMPOSE_COMMAND) exec $(CONTAINER_APP) php artisan test

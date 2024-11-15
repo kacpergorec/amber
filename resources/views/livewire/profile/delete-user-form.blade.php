@@ -34,7 +34,7 @@ new class extends Component {
     </header>
 
     <button class="btn btn-error" x-data=""
-            x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">{{ __('Delete Account') }}
+        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">{{ __('Delete Account') }}
     </button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable>
@@ -49,12 +49,12 @@ new class extends Component {
             </p>
 
             <div class="mt-6">
-                <x-input-label for="password" value="{{ __('Password') }}" class="sr-only"/>
+                <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
 
                 <x-text-input wire:model="password" id="password" name="password" type="password"
-                              class="mt-1 block w-3/4" placeholder="{{ __('Password') }}"/>
+                    class="mt-1 block w-3/4" placeholder="{{ __('Password') }}" />
 
-                <x-input-error :messages="$errors->get('password')" class="mt-2"/>
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
             <div class="mt-6 flex justify-end">

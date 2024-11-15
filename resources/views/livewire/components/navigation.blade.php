@@ -23,7 +23,7 @@ new class extends Component {
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-zinc-800 dark:text-zinc-200"/>
+                        <x-application-logo class="block h-9 w-auto fill-current text-zinc-800 dark:text-zinc-200" />
                     </a>
                 </div>
 
@@ -35,15 +35,13 @@ new class extends Component {
 
                     <x-dropdown align="middle" hoverable>
                         <x-slot name="trigger">
-                            <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')"
-                                        wire:navigate>
+                            <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')" wire:navigate>
                                 {{ __('Posts') }}
                             </x-nav-link>
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('posts.create')" :active="request()->routeIs('posts.create')"
-                                             wire:navigate>
+                            <x-dropdown-link :href="route('posts.create')" :active="request()->routeIs('posts.create')" wire:navigate>
                                 {{ __('New') }}
                             </x-dropdown-link>
                         </x-slot>
@@ -58,14 +56,14 @@ new class extends Component {
                         <button
                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-zinc-500 dark:text-zinc-400 bg-white dark:bg-neutral-800 hover:text-zinc-700 dark:hover:text-zinc-300 focus:outline-none transition ease-in-out duration-150">
                             <div x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name"
-                                 x-on:profile-updated.window="name = $event.detail.name"></div>
+                                x-on:profile-updated.window="name = $event.detail.name"></div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                     viewBox="0 0 20 20">
+                                    viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
-                                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                          clip-rule="evenodd"/>
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
                                 </svg>
                             </div>
                         </button>
@@ -86,19 +84,19 @@ new class extends Component {
                 </x-dropdown>
 
                 <!-- Dark Mode Switcher -->
-                <livewire:components.dark-mode-switcher/>
+                <livewire:components.dark-mode-switcher />
             </div>
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open"
-                        class="inline-flex items-center justify-center p-2 rounded-md text-zinc-400 dark:text-zinc-500 hover:text-zinc-500 dark:hover:text-zinc-400 hover:bg-neutral-100 dark:hover:bg-neutral-900 focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900 focus:text-zinc-500 dark:focus:text-zinc-400 transition duration-150 ease-in-out">
+                    class="inline-flex items-center justify-center p-2 rounded-md text-zinc-400 dark:text-zinc-500 hover:text-zinc-500 dark:hover:text-zinc-400 hover:bg-neutral-100 dark:hover:bg-neutral-900 focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-900 focus:text-zinc-500 dark:focus:text-zinc-400 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
-                              stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M4 6h16M4 12h16M4 18h16"/>
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{ 'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
-                              stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -112,8 +110,7 @@ new class extends Component {
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')"
-                                   wire:navigate>
+            <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')" wire:navigate>
                 {{ __('Posts') }}
             </x-responsive-nav-link>
         </div>
@@ -121,9 +118,8 @@ new class extends Component {
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-zinc-200 dark:border-zinc-600">
             <div class="px-4">
-                <div class="font-medium text-base text-zinc-800 dark:text-zinc-200"
-                     x-data="{{ json_encode(['name' => auth()->user()->name]) }}"
-                     x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
+                <div class="font-medium text-base text-zinc-800 dark:text-zinc-200" x-data="{{ json_encode(['name' => auth()->user()->name]) }}"
+                    x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
                 <div class="font-medium text-sm text-zinc-500">{{ auth()->user()->email }}</div>
             </div>
 

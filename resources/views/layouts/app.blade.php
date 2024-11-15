@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ darkMode: false }" class="light" data-theme="light"
-      x-bind:class="{ 'dark': darkMode === true }" x-bind:data-theme="darkMode ? 'dark' : 'light'"
-      x-init="
-    if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    x-bind:class="{ 'dark': darkMode === true }" x-bind:data-theme="darkMode ? 'dark' : 'light'" x-init="if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         localStorage.setItem('darkMode', JSON.stringify(true));
         darkMode = true;
     } else {
@@ -14,8 +12,7 @@
     });
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
         darkMode = event.matches;
-    });
-">
+    });">
 
 <head>
     <meta charset="utf-8">
@@ -27,8 +24,8 @@
         {{ isset($title) ? ' - ' . $title : '' }}
     </title>
 
-    <link href="{{asset('favicon-dark.ico')}}" rel="icon" media="(prefers-color-scheme: light)"/>
-    <link href="{{asset('favicon-light.ico')}}" rel="icon" media="(prefers-color-scheme: dark)"/>
+    <link href="{{ asset('favicon-dark.ico') }}" rel="icon" media="(prefers-color-scheme: light)" />
+    <link href="{{ asset('favicon-light.ico') }}" rel="icon" media="(prefers-color-scheme: dark)" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

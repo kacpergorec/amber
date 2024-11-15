@@ -51,7 +51,7 @@ new #[Layout('layouts.guest')] class extends Component {
         </button>
 
         <button wire:click="logout" type="submit"
-                class="underline text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-zinc-800">
+            class="underline text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-zinc-800">
             {{ __('Log Out') }}
         </button>
     </div>

@@ -2,14 +2,11 @@
 
 $subtleFactor: 0.2;
 
-
-
-@each $color in [ 'success', 'error', 'warning', 'info', 'primary', 'secondary'] {
-    .btn-#{$color},
-    .alert-#{$color},
-    .badge-#{$color} {
-        color: #fffbfa;
-    }
+@each $color in [ 'success', 'error', 'warning', 'info', 'primary', 'secondary']
+{
+  .btn-#{$color},
+  .alert-#{$color},
+  .badge-#{$color} {
+    color: #fffbfa;
+  }
 }
-
-

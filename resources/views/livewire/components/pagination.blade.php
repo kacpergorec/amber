@@ -5,9 +5,10 @@
         $scrollTo = 'body';
     }
 
-$scrollIntoViewJsSnippet = ($scrollTo !== false)
-    ? sprintf("(\$el.closest('%s') || document.querySelector('%s')).scrollIntoView()", $scrollTo, $scrollTo)
-    : '';
+    $scrollIntoViewJsSnippet =
+        $scrollTo !== false
+            ? sprintf("(\$el.closest('%s') || document.querySelector('%s')).scrollIntoView()", $scrollTo, $scrollTo)
+            : '';
 
 @endphp
 
