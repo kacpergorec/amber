@@ -3,11 +3,13 @@ declare (strict_types=1);
 
 namespace App\Handlers;
 
-use App\Enums\BulkActionType;
+use App\Enums\PostBulkActionType;
 use App\Factory\PostBulkHandlerFactory;
+use App\Livewire\Interface\BulkActionTypeInterface;
+use App\Livewire\Interface\BulkOperatorInterface;
 use Symfony\Component\Uid\Uuid;
 
-final readonly class PostBulkOperator
+final readonly class PostBulkOperator implements BulkOperatorInterface
 {
     public function __construct(
         private PostBulkHandlerFactory $handlerFactory,
@@ -18,7 +20,7 @@ final readonly class PostBulkOperator
     /**
      * @param Uuid[] $uuids
      */
-    public function handle(array $uuids, BulkActionType $type): void
+    public function handle(array $uuids, BulkActionTypeInterface $type): void
     {
         try {
             if (empty($uuids)) {

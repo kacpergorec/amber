@@ -3,7 +3,7 @@ declare (strict_types=1);
 
 namespace App\Factory;
 
-use App\Enums\BulkActionType;
+use App\Enums\PostBulkActionType;
 use App\Handlers\PostBulkDelete;
 use Nette\NotImplementedException;
 
@@ -15,11 +15,11 @@ final readonly class PostBulkHandlerFactory
     {
     }
 
-    public function from(BulkActionType $type) // : BulkHandlerInterface
+    public function from(PostBulkActionType $type) // : BulkHandlerInterface
     {
         return match ($type) {
-            BulkActionType::DELETE => $this->postBulkDelete,
-            BulkActionType::PUBLISH => throw new NotImplementedException('Publish bulk handler not implemented'),
+            PostBulkActionType::DELETE => $this->postBulkDelete,
+            PostBulkActionType::PUBLISH => throw new NotImplementedException('Publish bulk handler not implemented'),
             default => throw new \InvalidArgumentException('Unsupported bulk action type: ' . $type->value),
         };
     }

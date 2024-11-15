@@ -3,7 +3,9 @@ declare (strict_types=1);
 
 namespace App\Enums;
 
-enum BulkActionType: string
+use App\Livewire\Interface\BulkActionTypeInterface;
+
+enum PostBulkActionType: string implements BulkActionTypeInterface
 {
     case DELETE = 'delete';
     case PUBLISH = 'publish';
@@ -29,6 +31,13 @@ enum BulkActionType: string
         return match ($this) {
             self::DELETE => true,
             self::PUBLISH => false,
+        };
+    }
+
+    public function getVerb() : string
+    {
+        return match ($this) {
+            default => str_ends_with($this->value, 'e') ? $this->value . 'd' : $this->value . 'ed',
         };
     }
 }

@@ -1,8 +1,8 @@
 <div>
-    @if (!empty($selectedPosts))
+    @if (!empty($selectedItems))
         <div class="card bg-white dark:bg-base-300 overflow-x-scroll p-0 sm:p-3 rounded-none sm:rounded-lg mb-2">
             <div class="flex gap-3">
-                @foreach(\App\Enums\BulkActionType::cases() as $type)
+                @foreach(\App\Enums\PostBulkActionType::cases() as $type)
                     @if($type->hasConfirm())
                         <button
                             class="btn btn-sm btn-{{$type->getLevel()}}"
@@ -79,9 +79,9 @@
                         <td>
                             <div class="relative z-0">
                                 <input class="checkbox checkbox-sm dark:bg-base-300" id="select-{{ $post->id }}"
-                                       type="checkbox" @if (in_array($post->id, $selectedPosts)) checked @endif
+                                       type="checkbox" @if (in_array($post->id, $selectedItems)) checked @endif
                                        wire:loading.class="opacity-0 pointer-events-none" wire:target="selectAll"
-                                       wire:model.live="selectedPosts" value="{{ $post->id }}"
+                                       wire:model.live="selectedItems" value="{{ $post->id }}"
                                 />
                                 <div class="hidden absolute top-0" role="status" wire:target="selectAll"
                                      wire:loading.class.remove="hidden">
