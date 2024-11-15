@@ -21,11 +21,11 @@ trait WithBulkSelection
             throw new \LogicException("Table $table does not have an id column, needed for bulk selection");
         }
 
-        $entities = $currentPage
+        $data = $currentPage
             ? \DB::table($table)->paginate($this->perPage, ['id'], 'page', $currentPage)
             : \DB::table($table)->get();
 
-        $ids = $entities->pluck('id')->toArray();
+        $ids = $data->pluck('id')->toArray();
 
         $allItemsAreSelected = empty(array_diff($ids, $this->selectedItems));
 
