@@ -13,6 +13,12 @@ class Edit extends Component
 
     public string $content = '';
 
+    public function mount(Post $post) : void
+    {
+        $this->title = $post->title;
+        $this->content = $post->content;
+    }
+
     public function save() : void
     {
         Post::create([
