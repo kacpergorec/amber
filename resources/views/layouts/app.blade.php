@@ -20,6 +20,9 @@
         {{ isset($title) ? ' - ' . $title : '' }}
     </title>
 
+    <link href="{{asset('favicon-dark.ico')}}" rel="icon" media="(prefers-color-scheme: light)"/>
+    <link href="{{asset('favicon-light.ico')}}" rel="icon" media="(prefers-color-scheme: dark)"/>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />

@@ -23,4 +23,12 @@ enum BulkActionType: string
             self::PUBLISH => 'success',
         };
     }
+
+    public function hasConfirm() : bool
+    {
+        return match ($this) {
+            self::DELETE => true,
+            self::PUBLISH => false,
+        };
+    }
 }

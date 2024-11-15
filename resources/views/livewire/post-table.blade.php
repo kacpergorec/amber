@@ -3,12 +3,39 @@
         <div class="card bg-white dark:bg-base-300 overflow-x-scroll p-0 sm:p-3 rounded-none sm:rounded-lg mb-2">
             <div class="flex gap-3">
                 @foreach(\App\Enums\BulkActionType::cases() as $type)
-                    <button
-                        class="btn btn-sm btn-{{$type->getLevel()}}"
-                        wire:click="tableSelectionAction('{{ $type->value }}')"
-                    >
-                        {{ $type->getLabel() }}
-                    </button>
+                    @if($type->hasConfirm())
+                        <button
+                            class="btn btn-sm btn-{{$type->getLevel()}}"
+                            x-on:click="$dispatch('open-modal', 'confirm-{{ $type->value }}')"
+                        >
+                            {{ $type->getLabel() }}
+                        </button>
+                        <x-modal name="confirm-{{ $type->value }}" :show="false">
+                            <div class="p-6 flex justify-between items-center">
+                                <h2 class="text-lg font-medium text-zinc-900 dark:text-zinc-100">
+                                    {{ __('Are you sure you want to perform this action?') }}
+                                </h2>
+                                <div>
+                                    <button class="btn btn-ghost me-3"
+                                            x-on:click="$dispatch('close-modal', 'confirm-{{ $type->value }}')">
+                                        {{ __('Cancel') }}
+                                    </button>
+                                    <button class="btn btn-{{$type->getLevel()}}"
+                                            wire:click="tableSelectionAction('{{ $type->value }}')"
+                                            x-on:click="$dispatch('close-modal', 'confirm-{{ $type->value }}')">
+                                        {{ __('Confirm') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </x-modal>
+                    @else
+                        <button
+                            class="btn btn-sm btn-{{$type->getLevel()}}"
+                            wire:click="tableSelectionAction('{{ $type->value }}')"
+                        >
+                            {{ $type->getLabel() }}
+                        </button>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -31,8 +58,9 @@
                                        wire:click="selectAll({{ $posts->currentPage() }})">{{ __('Every on this page') }}</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="whitespace-nowrap"
-                                       wire:click="selectAll()">{{ __('Everything') }}</a>
+                                    <a href="#" class="whitespace-nowrap" wire:click="selectAll()">
+                                        {{ __('Everything') }}
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -95,7 +123,7 @@
                             <div class="flex gap-3 w-full justify-end font-semibold">
                                 <a href="#"
                                    class="bg-zinc-200 text-zinc-700 dark:bg-zinc-800 shadow rounded w-5 h-5 flex items-center justify-center dark:text-zinc-300 hover:text-info hover:dark:text-info hover:outline hover:outline-info"
-                                   x-on:click.prevent="$dispatch('open-modal', 'confirm-delete-{{ $post->id }}')">
+                                >
                                     <i class="bx bx-pencil"></i>
                                 </a>
                                 <a href="#"
