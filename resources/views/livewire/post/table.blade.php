@@ -84,6 +84,12 @@
                         @endif
                         {{ __('Author') }}
                     </th>
+                    <th wire:click="sortBy('updated_at')" class="cursor-pointer">
+                        @if($sortField === 'updated_at')
+                            <i class="bx bx-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                        @endif
+                        {{ __('Modified') }}
+                    </th>
                     <th></th>
                 </tr>
                 </thead>
@@ -126,7 +132,7 @@
                         <td>
                             <a href="{{ route('posts.edit', $post) }}"
                                class="link link-hover text-zinc-800 dark:text-zinc-200 text-ellipsis">
-                                {{ $post->title }}
+                                {{Str::words($post->title, 8)}}
                             </a>
                         </td>
                         <td>
@@ -136,6 +142,11 @@
                         </td>
                         <td class="text-zinc-600 dark:text-zinc-400">
                             {{ $post->author->name }}
+                        </td>
+                        <td>
+                            <span class="text-zinc-600 dark:text-zinc-400 text-nowrap">
+                                {{ $post->updated_at->diffForHumans() }}
+                            </span>
                         </td>
                         <td>
                             <div class="flex gap-3 w-full justify-end font-semibold">

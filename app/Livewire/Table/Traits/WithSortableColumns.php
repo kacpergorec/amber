@@ -1,12 +1,12 @@
 <?php
 declare (strict_types=1);
 
-namespace App\Livewire\Traits;
+namespace App\Livewire\Table\Traits;
 
 trait WithSortableColumns
 {
-    public string $sortField = 'id';
-    public string $sortDirection = 'asc';
+    public string $sortField = 'created_at';
+    public string $sortDirection = 'desc';
 
     public function sortBy(string $field): void
     {

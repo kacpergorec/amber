@@ -1,7 +1,7 @@
 <?php
 declare (strict_types=1);
 
-namespace App\Livewire\Traits;
+namespace App\Livewire\Table\Traits;
 
 use Livewire\Features\SupportPagination\HandlesPagination;
 

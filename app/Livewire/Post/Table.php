@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Post;
 
 use App\Enums\PostBulkActionType;
 use App\Handlers\PostBulkOperator;
 use App\Handlers\PostDelete;
-use App\Livewire\Traits\WithBulkSelection;
-use App\Livewire\Traits\WithPaginationSize;
-use App\Livewire\Traits\WithSortableColumns;
+use App\Livewire\Table\Traits\WithBulkSelection;
+use App\Livewire\Table\Traits\WithPaginationSize;
+use App\Livewire\Table\Traits\WithSortableColumns;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class PostTable extends Component
+class Table extends Component
 {
     // Todo: reconsider one Table Trait
     use WithPagination;
@@ -54,11 +55,12 @@ class PostTable extends Component
     {
         $posts = Post::with('author')
             ->leftJoin('users as author', 'posts.author_id', '=', 'author.id')
-            ->orderBy('author.name', $this->sortDirection)
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->orderBy('posts.id', 'desc')
             ->select('posts.*')
             ->paginate($this->perPage);
 
-        return view('livewire.post-table', [
+        return view('livewire.post.table', [
             'posts' => $posts,
         ]);
     }

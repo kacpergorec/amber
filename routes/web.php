@@ -10,10 +10,12 @@ Route::get('dashboard', DashboardController::class)
     ->name('dashboard');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::resource('posts', PostController::class);
+    Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+    Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::get('posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
 });
 
-Route::view('profile', 'livewire.profile')
+Route::view('profile', 'livewire.profile.index')
     ->middleware(['auth'])
     ->name('profile');
 

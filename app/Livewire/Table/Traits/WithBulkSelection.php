@@ -1,10 +1,11 @@
 <?php
 declare (strict_types=1);
 
-namespace App\Livewire\Traits;
+namespace App\Livewire\Table\Traits;
 
-use App\Livewire\Interface\BulkActionTypeInterface;
-use App\Livewire\Interface\BulkOperatorInterface;
+use App\Livewire\Table\Interface\BulkActionTypeInterface;
+use App\Livewire\Table\Interface\BulkOperatorInterface;
+use App\Models\Post;
 use Symfony\Component\Uid\Uuid;
 
 trait WithBulkSelection
@@ -21,9 +22,17 @@ trait WithBulkSelection
             throw new \LogicException("Table $table does not have an id column, needed for bulk selection");
         }
 
-        $data = $currentPage
-            ? \DB::table($table)->paginate($this->perPage, ['id'], 'page', $currentPage)
-            : \DB::table($table)->get();
+        if ($currentPage) {
+            $data = Post::with('author')
+                ->leftJoin('users as author', 'posts.author_id', '=', 'author.id')
+                ->orderBy($this->sortField, $this->sortDirection)
+                ->orderBy('posts.id', 'desc')
+                ->select('posts.*')
+                ->paginate($this->perPage)
+            ;
+        } else {
+            $data = \DB::table($table)->get();
+        }
 
         $ids = $data->pluck('id')->toArray();
 

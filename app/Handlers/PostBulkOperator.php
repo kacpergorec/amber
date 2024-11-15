@@ -3,10 +3,9 @@ declare (strict_types=1);
 
 namespace App\Handlers;
 
-use App\Enums\PostBulkActionType;
 use App\Factory\PostBulkHandlerFactory;
-use App\Livewire\Interface\BulkActionTypeInterface;
-use App\Livewire\Interface\BulkOperatorInterface;
+use App\Livewire\Table\Interface\BulkActionTypeInterface;
+use App\Livewire\Table\Interface\BulkOperatorInterface;
 use Symfony\Component\Uid\Uuid;
 
 final readonly class PostBulkOperator implements BulkOperatorInterface

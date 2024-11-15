@@ -1,7 +1,7 @@
 <?php
 declare (strict_types=1);
 
-namespace App\Livewire\Interface;
+namespace App\Livewire\Table\Interface;
 
 use Symfony\Component\Uid\Uuid;
 

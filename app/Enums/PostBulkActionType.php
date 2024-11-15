@@ -3,7 +3,7 @@ declare (strict_types=1);
 
 namespace App\Enums;
 
-use App\Livewire\Interface\BulkActionTypeInterface;
+use App\Livewire\Table\Interface\BulkActionTypeInterface;
 
 enum PostBulkActionType: string implements BulkActionTypeInterface
 {

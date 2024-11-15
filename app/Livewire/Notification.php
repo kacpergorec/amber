@@ -22,6 +22,6 @@ class Notification extends Component
 
     public function render() : View
     {
-        return view('livewire.notification');
+        return view('livewire.components.notification');
     }
 }
