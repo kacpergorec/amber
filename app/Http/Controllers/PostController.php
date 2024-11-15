@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
-use DB;
 use Illuminate\Contracts\View\View;
-use Symfony\Component\HttpFoundation\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Post::class,'post');
+    }
+
     public function index(): View
     {
         return view('livewire.pages.posts.index');

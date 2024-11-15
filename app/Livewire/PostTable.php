@@ -11,7 +11,6 @@ use App\Livewire\Traits\WithSortableColumns;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 
