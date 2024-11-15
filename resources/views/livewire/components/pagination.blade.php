@@ -105,7 +105,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
             </div>
 
             <div>
-                <span class="relative z-0 inline-flex rtl:flex-row-reverse rounded-md shadow-sm">
+                <span class="relative z-0 inline-flex rtl:flex-row-reverse rounded-md">
                     <span>
                         {{-- Previous Page Link --}}
                         @if ($paginator->onFirstPage())

@@ -66,16 +66,34 @@
                         </div>
                     </th>
                     <th>#</th>
-                    <th>{{ __('Title') }}</th>
-                    <th>{{ __('Status') }}</th>
-                    <th>{{ __('Author') }}</th>
+                    <th wire:click="sortBy('title')" class="cursor-pointer">
+                        @if($sortField === 'title')
+                            <i class="bx bx-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                        @endif
+                        {{ __('Title') }}
+                    </th>
+                    <th wire:click="sortBy('published_at')" class="cursor-pointer">
+                        @if($sortField === 'published_at')
+                            <i class="bx bx-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                        @endif
+                        {{ __('Status') }}
+                    </th>
+                    <th wire:click="sortBy('author.name')" class="cursor-pointer">
+                        @if($sortField === 'author.name')
+                            <i class="bx bx-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                        @endif
+                        {{ __('Author') }}
+                    </th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($posts as $key => $post)
-                    <tr class="ease-in-out" wire:loading.class="hidden"
-                        wire:target="deletePostConfirm('{{ $post->id }}')">
+                    <tr class="ease-in-out"
+                        wire:loading.class="hidden"
+                        wire:target="deletePostConfirm('{{ $post->id }}')"
+                        wire:key="post-{{ $post->id }}"
+                    >
                         <td>
                             <div class="relative z-0">
                                 <input class="checkbox checkbox-sm dark:bg-base-300" id="select-{{ $post->id }}"
