@@ -19,6 +19,4 @@ Route::view('profile', 'livewire.profile.index')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::redirect('/', 'dashboard');
-
 require __DIR__ . '/auth.php';

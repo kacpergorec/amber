@@ -56,7 +56,7 @@ class Table extends Component
         $posts = Post::with('author')
             ->leftJoin('users as author', 'posts.author_id', '=', 'author.id')
             ->orderBy($this->sortField, $this->sortDirection)
-            ->orderBy('posts.id', 'desc')
+            ->orderBy('posts.id')
             ->select('posts.*')
             ->paginate($this->perPage);
 

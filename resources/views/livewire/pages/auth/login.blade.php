@@ -23,7 +23,7 @@ new #[Layout('layouts.guest')] class extends Component {
     }
 }; ?>
 
-<div>
+<div x-init="darkMode = false">
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -45,7 +45,6 @@ new #[Layout('layouts.guest')] class extends Component {
 
             <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
         </div>
-
 
 
         <div class="flex items-center justify-between mt-4 gap-2">
