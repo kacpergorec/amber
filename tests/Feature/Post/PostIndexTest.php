@@ -56,10 +56,10 @@ class PostIndexTest extends TestCase
             ->assertViewHas(
                 'posts',
                 Post::with('author')
-                    ->select('posts.*')
                     ->leftJoin('users as author', 'posts.author_id', '=', 'author.id')
+                    ->select('posts.*')
+                    ->orderBy('id')
                     ->orderBy('title')
-                    ->orderBy('posts.id')
                     ->paginate(10)
             )
             // test reversing sort
@@ -67,10 +67,10 @@ class PostIndexTest extends TestCase
             ->assertViewHas(
                 'posts',
                 Post::with('author')
-                    ->select('posts.*')
                     ->leftJoin('users as author', 'posts.author_id', '=', 'author.id')
+                    ->select('posts.*')
+                    ->orderBy('id')
                     ->orderBy('title', 'desc')
-                    ->orderBy('posts.id')
                     ->paginate(10)
             )
             // test per page 100 and sort by reverse content
@@ -80,12 +80,13 @@ class PostIndexTest extends TestCase
             ->assertViewHas(
                 'posts',
                 Post::with('author')
-                    ->select('posts.*')
                     ->leftJoin('users as author', 'posts.author_id', '=', 'author.id')
+                    ->select('posts.*')
+                    ->orderBy('id')
                     ->orderBy('content', 'desc')
-                    ->orderBy('posts.id')
                     ->paginate(100)
-            );
+            )
+        ;
 
         // test if page 2 has correct data
         Livewire::test('post.table')
@@ -95,10 +96,10 @@ class PostIndexTest extends TestCase
             ->assertViewHas(
                 'posts',
                 Post::with('author')
-                    ->select('posts.*')
                     ->leftJoin('users as author', 'posts.author_id', '=', 'author.id')
+                    ->select('posts.*')
+                    ->orderBy('id')
                     ->orderBy('title')
-                    ->orderBy('posts.id')
                     ->paginate(10, ['*'], 'page', 2)
             );
     }
@@ -156,6 +157,14 @@ class PostIndexTest extends TestCase
         $user = User::factory()->create();
         Post::factory()->count(30)->create(['author_id' => $user->id]);
 
+        //select delete first item
+        $firstPostId = Post::first()->id;
+        Livewire::test('post.table')
+            ->set('selectedItems', [$firstPostId])
+            ->call('tableSelectionAction', PostBulkActionType::DELETE)
+            ->assertSet('selectedItems', []);;
+        $this->assertDatabaseMissing('posts', ['id' => $firstPostId]);
+
         //select first page
         Livewire::test('post.table')
             ->call('setPerPage', 10)
@@ -171,6 +180,5 @@ class PostIndexTest extends TestCase
         Livewire::test('post.table')
             ->call('tableSelectionAction', PostBulkActionType::DELETE)
             ->assertSet('selectedItems', []);
-
     }
 }

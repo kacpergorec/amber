@@ -39,7 +39,13 @@ class Table extends Component
 
     public function selectAll(?int $currentPage = null): void
     {
-        $this->bulkSelectAll(Post::class, $currentPage);
+        $this->bulkSelectAll(
+            query: Post::with('author')
+                ->leftJoin('users as author', 'posts.author_id', '=', 'author.id')
+                ->select('posts.*')
+                ->orderBy('id'),
+            fromPage: $currentPage
+        );
         $message = $this->bulkMessage('post', 'selected');
         $this->dispatch('notify', 'info', $message);
     }
@@ -55,10 +61,11 @@ class Table extends Component
     {
         $posts = Post::with('author')
             ->leftJoin('users as author', 'posts.author_id', '=', 'author.id')
-            ->orderBy($this->sortField, $this->sortDirection)
-            ->orderBy('posts.id')
             ->select('posts.*')
-            ->paginate($this->perPage);
+            ->orderBy('id')
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate($this->perPage)
+        ;
 
         return view('livewire.post.table', [
             'posts' => $posts,

@@ -5,7 +5,7 @@ namespace App\Livewire\Table\Traits;
 
 use App\Livewire\Table\Interface\BulkActionTypeInterface;
 use App\Livewire\Table\Interface\BulkOperatorInterface;
-use App\Models\Post;
+use Illuminate\Database\Eloquent\Builder;
 use Symfony\Component\Uid\Uuid;
 
 trait WithBulkSelection
@@ -13,25 +13,17 @@ trait WithBulkSelection
     /** @var Uuid[] $selectedItems */
     public array $selectedItems = [];
 
-    private function bulkSelectAll(string $class, ?int $currentPage = null): void
+    /**
+     * @param int|null $fromPage - Leave null to select all items
+     */
+    private function bulkSelectAll(Builder $query, ?int $fromPage = null): void
     {
-        /** @var string $table */
-        $table = (new $class)->getTable();
+        $data = $query->orderBy($this->sortField, $this->sortDirection);
 
-        if (!\Schema::hasColumn($table, 'id')) {
-            throw new \LogicException("Table $table does not have an id column, needed for bulk selection");
-        }
-
-        if ($currentPage) {
-            $data = Post::with('author')
-                ->leftJoin('users as author', 'posts.author_id', '=', 'author.id')
-                ->orderBy($this->sortField, $this->sortDirection)
-                ->orderBy('posts.id')
-                ->select('posts.*')
-                ->paginate($this->perPage)
-            ;
+        if ($fromPage){
+            $data = $data->paginate($this->perPage, ['*'], 'page', $fromPage);
         } else {
-            $data = \DB::table($table)->get();
+            $data = $data->get();
         }
 
         $ids = $data->pluck('id')->toArray();
@@ -55,7 +47,7 @@ trait WithBulkSelection
         $this->selectedItems = [];
     }
 
-    public function bulkMessage(string $name = 'item', string $verb = 'handled') : string
+    public function bulkMessage(string $name = 'item', string $verb = 'handled'): string
     {
         if (count($this->selectedItems) === 1) {
             return sprintf(

@@ -50,4 +50,4 @@ prettier:
 	$(DOCKER_COMPOSE_COMMAND) exec $(CONTAINER_APP) npm run prettier
 
 run-tests:
-	$(DOCKER_COMPOSE_COMMAND) exec $(CONTAINER_APP) php artisan test
+	$(DOCKER_COMPOSE_COMMAND) exec $(CONTAINER_APP) php artisan test --coverage
