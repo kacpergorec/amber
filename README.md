@@ -1,6 +1,6 @@
-> Before working with this repo, please read the [Disclaimer](#-disclaimer) and [Known limitations](#-known-limitations) sections.
+> [!CAUTION]
+>  Before working with this repo, please read the [Disclaimer](#-disclaimer) and [Known limitations](#-known-limitations) sections.
 
---- 
 # Amber CMS
 
 Amber CMS is a UX-first content management system built with **Laravel 11** and **Livewire**. It combines modern development practices with an emphasis on user experience, making it both a powerful and accessible solution for managing content.
@@ -57,31 +57,28 @@ docker-compose exec app php artisan test --coverage
 ```
 
 ## Feature Roadmap
-#### Stage 1
+##### Stage 1
 - [ ] User management, roles, permissions
 - [ ] Pages and Sections
 - [ ] Simple one-template system (Frontend)
-#### Stage 2
+##### Stage 2
 - [ ] Media management
 - [ ] Website settings
 - [ ] SEO settings
 - [ ] User settings
 - [ ] Exporting pages to static HTML and serving them
-#### Stage 3
+##### Stage 3
 - [ ] Templating system
 - [ ] Separate Core logic from Development logic
 - [ ] Publish to Packagist
-#### Stage 4 (Post release)
+##### Stage 4 (Post release)
 - [ ] Custom field filtering
 - [ ] Headless CMS Backend
 
----
+## ❗ Known limitations
+While this project is functional, it is not yet optimized for production in highly demanding environments. Contributions, feedback, and bug reports are welcome!
 
 ## ❗ Disclaimer
 Amber CMS is primarily a learning project. **My background is in Symfony**, and I’m using this opportunity to expand my skill set in Laravel and Livewire.
 
 That said, Amber CMS also serves a practical purpose: it ~~powers~~ **will power** [deploys.pl](https://deploys.pl), my personal website.
-
-
-## ❗ Known limitations
-While this project is functional, it is not yet optimized for production in highly demanding environments. Contributions, feedback, and bug reports are welcome!
