@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ darkMode: false }" class="dark" data-theme="dark"
-      x-bind:class="{ 'dark': darkMode === true }" x-bind:data-theme="darkMode ? 'dark' : 'light'"
-      x-init="if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    x-bind:class="{ 'dark': darkMode === true }" x-bind:data-theme="darkMode ? 'dark' : 'light'" x-init="if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         localStorage.setItem('darkMode', JSON.stringify(true));
         darkMode = true;
     } else {
@@ -13,8 +12,7 @@
     });
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
         darkMode = event.matches;
-    });"
->
+    });">
 
 <head>
     <meta charset="utf-8">
@@ -26,12 +24,12 @@
         {{ isset($title) ? ' - ' . $title : '' }}
     </title>
 
-    <link href="{{ asset('favicon-dark.ico') }}" rel="icon" media="(prefers-color-scheme: light)"/>
-    <link href="{{ asset('favicon-light.ico') }}" rel="icon" media="(prefers-color-scheme: dark)"/>
+    <link href="{{ asset('favicon-dark.ico') }}" rel="icon" media="(prefers-color-scheme: light)" />
+    <link href="{{ asset('favicon-light.ico') }}" rel="icon" media="(prefers-color-scheme: dark)" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     @livewireScripts
     @livewireStyles
@@ -40,12 +38,13 @@
 </head>
 
 <body class="font-sans antialiased text-primary-950 dark:text-primary-50">
-<div class="min-h-screen bg-base-100">
-    <livewire:components.navigation/>
-    <livewire:notification/>
-    <main>
-        {{ $slot }}
-    </main>
-</div>
+    <div class="min-h-screen bg-base-100">
+        <livewire:components.navigation />
+        <livewire:notification />
+        <main>
+            {{ $slot }}
+        </main>
+    </div>
 </body>
+
 </html>

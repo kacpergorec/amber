@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ darkMode: false }" class="light" data-theme="light"
-      x-bind:class="{ 'dark': darkMode === true }" x-bind:data-theme="darkMode ? 'dark' : 'light'"
-      x-init="if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    x-bind:class="{ 'dark': darkMode === true }" x-bind:data-theme="darkMode ? 'dark' : 'light'" x-init="if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         localStorage.setItem('darkMode', JSON.stringify(true));
         darkMode = true;
     } else {
@@ -13,8 +12,7 @@
     });
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
         darkMode = event.matches;
-    });"
->
+    });">
 
 <head>
     <meta charset="utf-8">
@@ -31,6 +29,7 @@
     @vite(['resources/css/tailwind.css', 'resources/css/app.scss', 'resources/js/app.js'])
 
 </head>
+
 <body class="font-sans text-primary-950 antialiased">
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-zinc-100 gap-8">
         <div>

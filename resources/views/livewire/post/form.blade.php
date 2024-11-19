@@ -6,7 +6,7 @@
         </label>
         <input type="text" id="title" wire:model="title" class="input w-full max-w-xs">
         @error('title')
-        <em class="text-error">{{ $message }}</em>
+            <em class="text-error">{{ $message }}</em>
         @enderror
     </div>
     <div class="mb-4">
@@ -17,10 +17,8 @@
         <livewire:editor :value="$content" />
 
         @error('content')
-        <em class="text-error">{{ $message }}</em>
+            <em class="text-error">{{ $message }}</em>
         @enderror
     </div>
     <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
 </form>
-
-
