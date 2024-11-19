@@ -19,5 +19,5 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
-    href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Michroma&family=Prosto+One&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Michroma"
     rel="stylesheet">

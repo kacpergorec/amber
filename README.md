@@ -35,6 +35,11 @@ make run
 make build-front
 ```
 
+```Bash
+docker-compose exec app php artisan migrate
+docker-compose exec app php artisan db:seed
+```
+
 ## Installation via Docker only
 
 ```Bash
@@ -45,6 +50,10 @@ docker network create amber-cms
 ```Bash
 # Initialize Docker Environment 
 docker-compose up -d
+
+# DB
+docker-compose exec app php artisan migrate
+docker-compose exec app php artisan db:seed
 
 # Composer and npm
 docker-compose exec app composer install
