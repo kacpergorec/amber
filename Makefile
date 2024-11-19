@@ -1,4 +1,4 @@
-NETWORK:=larvel-project
+NETWORK:=amber-cms
 CONTAINER_APP:=app
 DOCKER_COMPOSE_COMMAND:=$(if $(shell command -v compose), docker compose, docker-compose)
 

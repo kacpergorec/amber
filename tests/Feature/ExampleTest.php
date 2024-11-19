@@ -14,6 +14,6 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(404); // 404 for now, no front implemented yet
+        $response->assertStatus(302); // until frontend is implemented
     }
 }

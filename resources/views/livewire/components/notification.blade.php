@@ -1,4 +1,4 @@
-<div class="fixed top-6 right-9 space-y-2 z-50">
+<div class="fixed top-9 right-9 space-y-2 z-50">
     @foreach ($notifications as $notification)
         <div class="alert alert-{{ $notification['type'] }}" x-data="{ show: false }" x-init="setTimeout(() => { show = true; }, 100);
         setTimeout(() => { show = false; }, 5000);" x-show="show"

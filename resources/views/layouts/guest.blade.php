@@ -1,5 +1,20 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ darkMode: false }" class="light" data-theme="light"
+      x-bind:class="{ 'dark': darkMode === true }" x-bind:data-theme="darkMode ? 'dark' : 'light'"
+      x-init="if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        localStorage.setItem('darkMode', JSON.stringify(true));
+        darkMode = true;
+    } else {
+        darkMode = JSON.parse(localStorage.getItem('darkMode'));
+    }
+    $watch('darkMode', value => {
+        localStorage.setItem('darkMode', JSON.stringify(value));
+        document.documentElement.setAttribute('data-theme', value ? 'dark' : 'light');
+    });
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        darkMode = event.matches;
+    });"
+>
 
 <head>
     <meta charset="utf-8">

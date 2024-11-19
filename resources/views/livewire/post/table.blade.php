@@ -147,7 +147,7 @@
                             </td>
                             <td>
                                 <div class="flex gap-3 w-full justify-end font-semibold">
-                                    <a href="#"
+                                    <a href="{{ route('posts.edit', $post) }}#"
                                         class="bg-zinc-200 text-zinc-700 dark:bg-zinc-800 shadow rounded w-5 h-5 flex items-center justify-center dark:text-zinc-300 hover:text-info hover:dark:text-info hover:outline hover:outline-info">
                                         <i class="bx bx-pencil"></i>
                                     </a>
