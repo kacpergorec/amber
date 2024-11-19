@@ -1,7 +1,17 @@
 > [!CAUTION]
 >  Before working with this repo, please read the [Disclaimer](#-disclaimer) and [Known limitations](#-known-limitations) sections.
 
-# Amber CMS
+---
+
+<p align="center"><a href="https://deploys.pl" target="_blank">
+    <img src="https://i.ibb.co/72VzznX/amber.png" width="200" alt="Amber CMS Logo">
+</a></p>
+
+<p align="center">
+<img src="https://img.shields.io/badge/status-active-darkforestgreen">
+<a href="https://github.com/kacpergorec/amber/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-GPL_3.0-blue"></a>
+</p>
+
 
 Amber CMS is a UX-first content management system built with **Laravel 11** and **Livewire**. It combines modern development practices with an emphasis on user experience, making it both a powerful and accessible solution for managing content.
 
