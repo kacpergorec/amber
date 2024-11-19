@@ -37,10 +37,10 @@
     @vite(['resources/css/tailwind.css', 'resources/css/app.scss', 'resources/js/app.js', 'resources/js/quill.js'])
 </head>
 
-<body class="font-sans antialiased text-primary-950 dark:text-primary-50">
+<body class="font-sans antialiased text-zinc-900 dark:text-[#c8c8c8]">
     <div class="min-h-screen bg-base-100">
         <livewire:components.navigation />
-        <livewire:notification />
+        <livewire:notification />7
         <main>
             {{ $slot }}
         </main>

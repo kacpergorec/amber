@@ -17,13 +17,16 @@ class Editor extends Component
         if ($name === null) {
             $this->name = uniqid('editor_');
         }
+    }
 
-        $this->clearHtml();
+    public function mount() : void
+    {
+        $this->sanitizeHtml();
     }
 
     public function updatedValue(): void
     {
-        $this->clearHtml();
+        $this->sanitizeHtml();
         $this->dispatch(self::EVENT_VALUE_UPDATED, $this->value, $this->name);
     }
 
@@ -32,8 +35,8 @@ class Editor extends Component
         return view('livewire.components.editor');
     }
 
-    private function clearHtml() : void
+    private function sanitizeHtml() : void
     {
-        $this->value = strip_tags($this->value, '<h1><h2><h3><h4><h5><h6><p><a><ul><ol><li><strong><em><del><ins><code><pre><blockquote><figure><img><video><audio><table><thead><tbody><tfoot><tr><th><td><hr><br><span><div>');
+        $this->value = strip_tags($this->value, '<h1><h2><h3><h4><h5><h6><p><a><ul><ol><li><strong><em><del><ins><code><pre><blockquote><figure><img><video><audio><table><thead><tbody><tfoot><tr><th><td><hr><br><span>');
     }
 }

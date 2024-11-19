@@ -1,0 +1,100 @@
+@import 'quill/dist/quill.snow.css';
+
+/* Theme Overrides */
+
+.ql-toolbar, .ql-container {
+    border: none !important;
+}
+
+.ql-toolbar{
+    @apply bg-white dark:bg-base-300 rounded-lg rounded-b-none;
+}
+
+.ql-container {
+    @apply bg-white dark:bg-base-300 rounded-lg rounded-t-none;
+    @apply min-h-[50vh];
+}
+
+
+
+/* Inside Editor */
+
+.ql-editor{
+    @apply leading-7;
+}
+
+.ql-editor h1 {
+    @apply text-3xl font-bold;
+}
+
+.ql-editor h2 {
+    @apply text-2xl font-bold;
+}
+
+.ql-editor h3 {
+    @apply text-xl font-bold;
+}
+
+.ql-editor h4 {
+    @apply text-lg font-bold;
+}
+
+.ql-editor h5 {
+    @apply text-base font-bold;
+}
+
+.ql-editor h6 {
+    @apply text-sm font-bold;
+}
+
+.ql-editor p {
+    @apply mb-4;
+}
+
+.ql-editor a {
+    @apply text-blue-500 underline;
+}
+
+.ql-editor ul, .ql-editor ol {
+    @apply list-disc list-inside mb-4;
+}
+
+.ql-editor li {
+    @apply mb-1;
+}
+
+.ql-editor strong {
+    @apply font-bold;
+}
+
+.ql-editor em {
+    @apply italic;
+}
+
+.ql-editor del {
+    @apply line-through;
+}
+
+.ql-editor code {
+    @apply bg-gray-100 text-red-500 px-1 rounded;
+}
+
+.ql-editor pre {
+    @apply bg-gray-100 p-2 rounded overflow-x-auto;
+}
+
+.ql-editor blockquote {
+    @apply border-l-4 border-gray-300 pl-4 italic text-gray-600;
+}
+
+.ql-editor img {
+    @apply max-w-full h-auto;
+}
+
+.ql-editor table {
+    @apply border-collapse border border-gray-300;
+}
+
+.ql-editor th, .ql-editor td {
+    @apply border border-gray-300 px-2 py-1;
+}

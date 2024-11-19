@@ -1,24 +1,20 @@
 <form wire:submit="save" class="form-control">
     @csrf
-    <div class="mb-4">
-        <label for="title" class="label">
-            <span class="label-text">{{ __('Title') }}</span>
-        </label>
-        <input type="text" id="title" wire:model="title" class="input w-full max-w-xs">
+    <div class="flex items-center gap-3 py-4">
+        <input type="text" id="title" wire:model="title" class="input bg-base-300 w-full">
         @error('title')
-            <em class="text-error">{{ $message }}</em>
+        <em class="text-error">{{ $message }}</em>
         @enderror
     </div>
-    <div class="mb-4">
-        <label for="content" class="label">
-            <span class="label-text">{{ __('Content') }}</span>
-        </label>
 
-        <livewire:editor :value="$content" />
+    <livewire:editor :value="$content"/>
 
-        @error('content')
-            <em class="text-error">{{ $message }}</em>
-        @enderror
+    @error('content')
+    <em class="text-error">{{ $message }}</em>
+    @enderror
+
+    <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-base-300 p-4 shadow-lg flex justify-center gap-3">
+        <button type="submit" class="btn btn-sm btn-primary">{{ __('Save Post') }}</button>
+        <a href="{{route('posts.index')}}" class="btn btn-sm btn-neutral">{{__('Return')}}</a>
     </div>
-    <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
 </form>
