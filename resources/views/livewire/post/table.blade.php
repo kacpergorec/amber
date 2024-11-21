@@ -1,48 +1,69 @@
 <div>
-    @if (!empty($selectedItems))
-        <div class="card bg-white dark:bg-base-300 overflow-x-scroll p-0 sm:p-3 rounded-none sm:rounded-lg mb-2">
-            <div class="flex gap-3">
-                @foreach (\App\Enums\PostBulkActionType::cases() as $type)
-                    @if ($type->hasConfirm())
-                        <button class="btn btn-sm btn-{{ $type->getLevel() }}"
-                            x-on:click="$dispatch('open-modal', 'confirm-{{ $type->value }}')"
-                            wire:loading.class="pointer-events-none animate-pulse">
-                            {{ $type->getLabel() }}
-                        </button>
-                        <x-modal name="confirm-{{ $type->value }}" :show="false">
-                            <div class="p-6 flex justify-between items-center">
-                                <h2 class="text-lg font-medium text-neutral-900 dark:text-neutral-100">
-                                    {{ __('Are you sure you want to perform this action?') }}
-                                </h2>
-                                <div>
-                                    <button class="btn btn-ghost me-3"
-                                        x-on:click="$dispatch('close-modal', 'confirm-{{ $type->value }}')">
-                                        {{ __('Cancel') }}
-                                    </button>
-                                    <button class="btn btn-{{ $type->getLevel() }}"
-                                        wire:click="tableSelectionAction('{{ $type->value }}')"
-                                        x-on:click="$dispatch('close-modal', 'confirm-{{ $type->value }}')">
-                                        {{ __('Confirm') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </x-modal>
-                    @else
-                        <button class="btn btn-sm btn-{{ $type->getLevel() }}"
-                            wire:click="tableSelectionAction('{{ $type->value }}')"
-                            wire:loading.class="pointer-events-none animate-pulse">
-                            {{ $type->getLabel() }}
-                        </button>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-    @endif
 
+    {{--  Header --}}
+    <div class="flex items-center gap-3">
+        <h1 class="text-3xl my-3 sm:my-6 px-2 sm:px-0">
+            {{ __('Posts') }}
+        </h1>
+
+        <x-pill-link :href="route('posts.create')" :icon="'bx bx-plus'">
+            {{ __('Add new post') }}
+        </x-pill-link>
+
+        <x-pill-link :href="route('posts.index')" :icon="'bx bx-filter'">
+            {{ __('Filters') }}
+        </x-pill-link>
+
+        @if (!empty($selectedItems))
+            @foreach (\App\Enums\PostBulkActionType::cases() as $type)
+                @if ($type->hasConfirm())
+                    <button
+                        class="relative flex items-center btn btn-xs btn-subtle btn-{{ $type->getLevel() }} text-base hover:shadow-md transition-shadow rounded-full h-6 ps-2 pe-3 gap-2"
+                        x-on:click="$dispatch('open-modal', 'confirm-{{ $type->value }}')"
+                        wire:loading.class="pointer-events-none">
+                        <span class="text-sm whitespace-nowrap">
+                            {{ $type->getLabel() }}
+                        </span>
+                    </button>
+                    <x-modal name="confirm-{{ $type->value }}" :show="false">
+                        <div class="p-6 flex justify-between items-center">
+                            <h2 class="text-lg font-medium text-neutral-900 dark:text-neutral-100">
+                                {{ __('Are you sure you want to perform this action?') }}
+                            </h2>
+                            <div>
+                                <button class="btn btn-ghost me-3"
+                                    x-on:click="$dispatch('close-modal', 'confirm-{{ $type->value }}')">
+                                    {{ __('Cancel') }}
+                                </button>
+                                <button class="btn btn-{{ $type->getLevel() }}"
+                                    wire:click="tableSelectionAction('{{ $type->value }}')"
+                                    x-on:click="$dispatch('close-modal', 'confirm-{{ $type->value }}')">
+                                    {{ __('Confirm') }}
+                                </button>
+                            </div>
+                        </div>
+                    </x-modal>
+                @else
+                    <button
+                        class="relative flex items-center btn btn-xs btn-subtle btn-{{ $type->getLevel() }} hover:shadow-md transition-shadow rounded-full h-6 ps-2 pe-3 gap-2"
+                        wire:click="tableSelectionAction('{{ $type->value }}')"
+                        wire:loading.class="pointer-events-none">
+                        <span class="text-sm whitespace-nowrap">
+                            {{ $type->getLabel() }}
+                        </span>
+                    </button>
+                @endif
+            @endforeach
+        @endif
+    </div>
+
+    {{--  Table --}}
     @if (!$posts->isEmpty())
-        <div class="card bg-white dark:bg-base-300 overflow-x-scroll p-0 sm:p-3 rounded-none sm:rounded-t-lg">
+        <x-card>
             <table class="table table-xs md:table-sm lg:table-md">
                 <thead>
+
+                    {{--  Bulk actions --}}
                     <tr>
                         <th>
                             <div class="dropdown relative z-10">
@@ -63,6 +84,8 @@
                                 </ul>
                             </div>
                         </th>
+
+                        {{--  Table headers --}}
                         <th>#</th>
                         <th wire:click="sortBy('title')" class="cursor-pointer">
                             @if ($sortField === 'title')
@@ -91,6 +114,8 @@
                         <th></th>
                     </tr>
                 </thead>
+
+                {{--  Table body --}}
                 <tbody>
                     @foreach ($posts as $key => $post)
                         <tr class="ease-in-out" wire:loading.class="hidden"
@@ -106,7 +131,7 @@
                                     <div class="hidden absolute top-0" role="status" wire:target="selectAll"
                                         wire:loading.class.remove="hidden">
                                         <svg aria-hidden="true"
-                                            class="w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
+                                            class="w-5 h-5 text-neutral-200 animate-spin dark:text-neutral-600 fill-neutral-600 dark:fill-neutral-300"
                                             viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -115,7 +140,6 @@
                                                 d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
                                                 fill="currentFill" />
                                         </svg>
-                                        <span class="sr-only">Loading...</span>
                                     </div>
                                 </div>
                             </td>
@@ -132,7 +156,7 @@
                                 </a>
                             </td>
                             <td>
-                                <span class="badge badge-ghost text-neutral-600 dark:text-neutral-400"
+                                <span class="badge badge-ghost text-neutral-600 dark:text-neutral-400 transition-none"
                                     style="--tw-bg-opacity:.5">
                                     {{ $post->publishedAt ? __('Published') : __('Draft') }}
                                 </span>
@@ -145,6 +169,8 @@
                                     {{ $post->updated_at->diffForHumans() }}
                                 </span>
                             </td>
+
+                            {{--  Actions --}}
                             <td>
                                 <div class="flex gap-3 w-full justify-end font-semibold">
                                     <a href="{{ route('posts.edit', $post) }}#"
@@ -180,13 +206,14 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
-        <div class="card bg-white dark:bg-base-300 p-3 rounded-t-none">
-            <div class="flex justify-between">
+
+            {{--  Pagination --}}
+            <div class="flex justify-between mt-5">
                 {{ $posts->links('livewire.components.pagination') }}
             </div>
-        </div>
+        </x-card>
     @else
+        {{--  No posts found --}}
         <div class="card bg-white dark:bg-base-300 p-3 rounded-lg">
             <h2 class="text-lg text-neutral-900 dark:text-neutral-100 text-center">
                 {{ __('No posts found') }}

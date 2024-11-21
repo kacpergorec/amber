@@ -24,24 +24,35 @@
         {{ isset($title) ? ' - ' . $title : '' }}
     </title>
 
-    <link href="{{ asset('favicon-dark.ico') }}" rel="icon" media="(prefers-color-scheme: light)" />
+    <!-- Top Scripts -->
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+    @livewireScripts
+    @livewireStyles
+    @vite(['resources/css/tailwind.css', 'resources/css/app.scss', 'resources/js/app.js', 'resources/js/quill.js'])
+
+    <!-- Favicon -->
+    <link href="{{ asset('favicon-dark.ico') }}" rel="icon" media="(prefers-color-scheme: light)" async />
     <link href="{{ asset('favicon-light.ico') }}" rel="icon" media="(prefers-color-scheme: dark)" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-    @livewireScripts
-    @livewireStyles
-    <!-- Top Scripts -->
-    @vite(['resources/css/tailwind.css', 'resources/css/app.scss', 'resources/js/app.js', 'resources/js/quill.js'])
 </head>
 
-<body class="font-sans antialiased text-neutral-900 dark:text-[#c8c8c8]">
-    <div class="min-h-screen bg-base-100">
-        <livewire:components.navigation />
+<body class="font-sans antialiased text-neutral-900 dark:text-[#c8c8c8]" x-cloak>
+    <div class="min-h-screen bg-base-100" x-data="{ sidebarOpen: false, sidebarShrink: $persist(false) }" x-init="init">
         <livewire:notification />
-        <main>
+        <livewire:components.top-bar />
+        <livewire:components.side-bar />
+        <main class="mt-12 transition-all"
+            :class="{
+                'md:ml-52': !sidebarShrink,
+                'md:ml-16': sidebarShrink
+            }">
             {{ $slot }}
         </main>
     </div>

@@ -1,5 +1,5 @@
 > [!CAUTION]
->  Before working with this repo, please read the [Disclaimer](#-disclaimer) and [Known limitations](#-known-limitations) sections.
+> Before working with this repo, please read the [Disclaimer](#-disclaimer) and [Known limitations](#-known-limitations) sections.
 
 ---
 
@@ -11,7 +11,6 @@
 <img src="https://img.shields.io/badge/status-active-darkforestgreen">
 <a href="https://github.com/kacpergorec/amber/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-GPL_3.0-blue"></a>
 </p>
-
 
 Amber CMS is a UX-first content management system built with **Laravel 11** and **Livewire**. It combines modern development practices with an emphasis on user experience, making it both a powerful and accessible solution for managing content.
 
@@ -48,7 +47,7 @@ docker network create amber-cms
 ```
 
 ```Bash
-# Initialize Docker Environment 
+# Initialize Docker Environment
 docker-compose up -d
 
 # DB
@@ -72,7 +71,8 @@ make prettier
 # Testing (.env.testing)
 make create-testing-db
 make run-tests
-````
+```
+
 ```Bash
 docker-compose exec app npm run prettier
 
@@ -81,28 +81,38 @@ docker-compose exec app php artisan test --coverage
 ```
 
 ## Feature Roadmap
+
 ##### Stage 1
+
 - [ ] User management, roles, permissions
 - [ ] Pages and Sections
 - [ ] Simple one-template system (Frontend)
+
 ##### Stage 2
+
 - [ ] Media management
 - [ ] Website settings
 - [ ] SEO settings
 - [ ] User settings
 - [ ] Exporting pages to static HTML and serving them
+
 ##### Stage 3
+
 - [ ] Templating system
 - [ ] Separate Core logic from Development logic
 - [ ] Publish to Packagist
+
 ##### Stage 4 (Post release)
+
 - [ ] Custom field filtering
 - [ ] Headless CMS Backend
 
 ## ❗ Known limitations
+
 While this project is functional, it is not yet optimized for production in highly demanding environments. Contributions, feedback, and bug reports are welcome!
 
 ## ❗ Disclaimer
+
 Amber CMS is primarily a learning project. **My background is in Symfony**, and I’m using this opportunity to expand my skill set in Laravel and Livewire.
 
 That said, Amber CMS also serves a practical purpose: it ~~powers~~ **will power** [deploys.pl](https://deploys.pl), my personal website.

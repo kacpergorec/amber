@@ -3,8 +3,8 @@
 @php
     $classes =
         $active ?? false
-            ? 'inline-flex items-center px-1 pt-1 border-b-2 border-primary-400 dark:border-primary-600 text-sm font-medium leading-5 text-neutral-900 dark:text-neutral-100 transition duration-150 ease-in-out'
-            : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300 hover:border-neutral-300 dark:hover:border-neutral-70 transition duration-150 ease-in-out';
+            ? 'block px-4 py-2 text-sm text-primary-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-600 dark:hover:text-white text-white font-bold'
+            : 'block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-600 dark:hover:text-white';
 @endphp
 
 <a {{ $attributes->merge(['class' => $classes]) }}>

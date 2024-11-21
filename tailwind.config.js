@@ -16,17 +16,18 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#FFFBFA',
-          100: '#FFF1EB',
-          200: '#FFE0CC',
-          300: '#FFCB9F',
-          400: '#FCB864',
-          500: '#F59E0B',
-          600: '#EB8305',
-          700: '#DA6601',
-          800: '#B84600',
-          900: '#802600',
-          950: '#330B00',
+          DEFAULT: '#CA4E02',
+          50: '#FFF0E6',
+          100: '#FEE1CD',
+          200: '#FEC39A',
+          300: '#FDA468',
+          400: '#FD8435',
+          500: '#FC6303',
+          600: '#CA4E02',
+          700: '#973A02',
+          800: '#652601',
+          900: '#321301',
+          950: '#190900',
         },
       },
       fontFamily: {
@@ -40,8 +41,8 @@ export default {
       {
         light: {
           ...require('daisyui/src/theming/themes')['light'],
-          primary: '#F59E0B',
-          'primary-focus': '#EB8305',
+          primary: '#FD8435',
+          'primary-focus': '#ff8230',
           secondary: '#df4137',
           'secondary-focus': '#d12222',
           accent: '#ffffff',
@@ -55,8 +56,8 @@ export default {
         },
         dark: {
           ...require('daisyui/src/theming/themes')['dark'],
-          primary: '#F59E0B',
-          'primary-focus': '#EB8305',
+          primary: '#FC6303',
+          'primary-focus': '#e65a00',
           secondary: '#d1231b',
           'secondary-focus': '#A40E0E',
           accent: '#ffffff',

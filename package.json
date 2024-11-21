@@ -36,6 +36,7 @@
     "@tiptap/extension-underline": "^2.9.1",
     "boxicons": "^2.1.4",
     "quill": "^2.0.2",
+    "quilljs-markdown": "^1.2.0",
     "tinymce": "^7.5.1"
   }
 }

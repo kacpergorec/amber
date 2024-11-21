@@ -1,9 +1,9 @@
-@import "quill-overrides.css";
-@import "daisy-overrides.css";
+@import 'quill-overrides.css';
+@import 'daisy-overrides.css';
 
 @import 'boxicons/css/boxicons.min.css';
 
-$subtleFactor: 0.2;
+$subtleFactor: 20;
 
 @each $color in [ 'success', 'error', 'warning', 'info', 'primary', 'secondary']
 {
@@ -12,4 +12,30 @@ $subtleFactor: 0.2;
   .badge-#{$color} {
     color: #fffbfa;
   }
+
+  .btn-#{$color}.btn-subtle {
+    @apply bg-opacity-10 border-opacity-15
+        hover:bg-opacity-100 hover:bg-white hover:border-opacity-100 hover:border-white hover:text-neutral-900
+        dark:hover:bg-base-300 dark:hover:border-base-300 dark:hover:text-neutral-100;
+  }
+}
+
+//Sass limitations with tailwind preprocessor forces to write every single color
+.btn-error.btn-subtle {
+  @apply text-error;
+}
+.btn-success.btn-subtle {
+  @apply text-success;
+}
+.btn-warning.btn-subtle {
+  @apply text-warning;
+}
+.btn-info.btn-subtle {
+  @apply text-info;
+}
+.btn-primary.btn-subtle {
+  @apply text-primary;
+}
+.btn-secondary.btn-subtle {
+  @apply text-secondary;
 }
