@@ -14,6 +14,7 @@
 .ql-container {
   @apply bg-white dark:bg-base-300 rounded-lg rounded-t-none;
   @apply min-h-[50vh];
+    @apply border-neutral-200 dark:border-neutral-700;
 }
 
 /* Inside Editor */

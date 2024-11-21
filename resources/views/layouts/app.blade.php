@@ -44,7 +44,7 @@
 </head>
 
 <body class="font-sans antialiased text-neutral-900 dark:text-[#c8c8c8]" x-cloak>
-    <div class="min-h-screen bg-base-100" x-data="{ sidebarOpen: false, sidebarShrink: $persist(false) }" x-init="init">
+    <div class="min-h-screen bg-base-100" x-data="{ sidebarOpen: false, sidebarShrink: $persist(false) }">
         <livewire:notification />
         <livewire:components.top-bar />
         <livewire:components.side-bar />

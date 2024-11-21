@@ -8,7 +8,7 @@
 @endphp
 
 <a class="{{ $classes }}" href="{{ $href }}">
-    <i class="mx-auto text-xs {{ $active ? 'text-primary-500 ' . $icon : str_replace('bx-', 'bxs-', $icon) }}"></i>
+    <i class="mx-auto text-xs {{$icon}} {{ $active ? 'text-primary-500' : ''}}"></i>
     <span class="whitespace-nowrap transition-all"
         :class="{
             'justify-center': sidebarShrink,

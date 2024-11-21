@@ -1,4 +1,4 @@
-<div>
+<div x-data="{ bulkLoading: false }">
 
     {{--  Header --}}
     <div class="flex items-center gap-3">
@@ -15,6 +15,8 @@
         </x-pill-link>
 
         @if (!empty($selectedItems))
+            <div x-init="bulkLoading = false;
+            $el.remove()"></div>
             @foreach (\App\Enums\PostBulkActionType::cases() as $type)
                 @if ($type->hasConfirm())
                     <button
@@ -22,7 +24,7 @@
                         x-on:click="$dispatch('open-modal', 'confirm-{{ $type->value }}')"
                         wire:loading.class="pointer-events-none">
                         <span class="text-sm whitespace-nowrap">
-                            {{ $type->getLabel() }}
+                            {{ $type->getLabel() }} ({{ count($selectedItems) }})
                         </span>
                     </button>
                     <x-modal name="confirm-{{ $type->value }}" :show="false">
@@ -49,12 +51,18 @@
                         wire:click="tableSelectionAction('{{ $type->value }}')"
                         wire:loading.class="pointer-events-none">
                         <span class="text-sm whitespace-nowrap">
-                            {{ $type->getLabel() }}
+                            {{ $type->getLabel() }} ({{ count($selectedItems) }})
                         </span>
                     </button>
                 @endif
             @endforeach
+        @else
+            <div x-init="bulkLoading = false; $el.remove()"></div>
         @endif
+
+        <span x-show="bulkLoading">
+            <i class="bx bx-loader-alt animate-spin"></i>
+        </span>
     </div>
 
     {{--  Table --}}
@@ -73,11 +81,16 @@
                                 </label>
                                 <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box"
                                     wire:target="selectAll" wire:loading.class="hidden">
-                                    <li><a href="#" class="whitespace-nowrap"
-                                            wire:click="selectAll({{ $posts->currentPage() }})">{{ __('Every on this page') }}</a>
+                                    <li>
+                                        <a href="#" class="whitespace-nowrap"
+                                            wire:click="selectAll({{ $posts->currentPage() }})"
+                                            x-on:click="bulkLoading = true">
+                                            {{ __('Every on this page') }}
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="whitespace-nowrap" wire:click="selectAll()">
+                                        <a href="#" class="whitespace-nowrap" wire:click="selectAll()"
+                                            x-on:click="bulkLoading = true">
                                             {{ __('Everything') }}
                                         </a>
                                     </li>
@@ -123,11 +136,11 @@
                             wire:key="post-{{ $post->id }}">
                             <td>
                                 <div class="relative z-0">
-                                    <input class="checkbox checkbox-sm dark:bg-base-300"
+                                    <input class="bulk-checkbox checkbox checkbox-sm dark:bg-base-300"
                                         id="select-{{ $post->id }}" type="checkbox"
-                                        @if (in_array($post->id, $selectedItems)) checked @endif
+                                        @if (in_array($post->id, $selectedItems)) checked @endif value="{{ $post->id }}"
                                         wire:loading.class="opacity-0 pointer-events-none" wire:target="selectAll"
-                                        wire:model.live="selectedItems" value="{{ $post->id }}" />
+                                        wire:model.live="selectedItems" x-on:click="bulkLoading = true" />
                                     <div class="hidden absolute top-0" role="status" wire:target="selectAll"
                                         wire:loading.class.remove="hidden">
                                         <svg aria-hidden="true"

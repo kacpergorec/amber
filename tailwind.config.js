@@ -47,7 +47,7 @@ export default {
           'secondary-focus': '#d12222',
           accent: '#ffffff',
           info: '#5493ff',
-          success: '#1ed89c',
+          success: '#14d190',
           warning: '#ff8532',
           error: '#ff6464',
           'base-100': '#f4f4f5',

@@ -13,8 +13,8 @@ enum PostBulkActionType: string implements BulkActionTypeInterface
     public function getLabel(): string
     {
         return match ($this) {
-            self::DELETE => 'Delete selected',
-            self::PUBLISH => 'Publish selected',
+            self::DELETE => 'Delete',
+            self::PUBLISH => 'Publish',
         };
     }
 
