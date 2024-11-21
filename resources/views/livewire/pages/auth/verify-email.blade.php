@@ -35,7 +35,7 @@ new #[Layout('layouts.guest')] class extends Component {
 }; ?>
 
 <div>
-    <div class="mb-4 text-sm text-zinc-600 dark:text-zinc-400">
+    <div class="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
         {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
     </div>
 
@@ -51,7 +51,7 @@ new #[Layout('layouts.guest')] class extends Component {
         </button>
 
         <button wire:click="logout" type="submit"
-            class="underline text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-zinc-800">
+            class="underline text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-neutral-800">
             {{ __('Log Out') }}
         </button>
     </div>

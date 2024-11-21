@@ -11,7 +11,7 @@
                         </button>
                         <x-modal name="confirm-{{ $type->value }}" :show="false">
                             <div class="p-6 flex justify-between items-center">
-                                <h2 class="text-lg font-medium text-zinc-900 dark:text-zinc-100">
+                                <h2 class="text-lg font-medium text-neutral-900 dark:text-neutral-100">
                                     {{ __('Are you sure you want to perform this action?') }}
                                 </h2>
                                 <div>
@@ -119,7 +119,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="text-zinc-400">
+                            <td class="text-neutral-400">
                                 <span x-data="{ id: '{{ $post->id }}' }" x-on:click="navigator.clipboard.writeText(id)"
                                     class="select-none cursor-pointer">
                                     {{ ++$key }}
@@ -127,39 +127,39 @@
                             </td>
                             <td>
                                 <a href="{{ route('posts.edit', $post) }}"
-                                    class="link link-hover text-zinc-800 dark:text-zinc-200 text-ellipsis">
+                                    class="link link-hover text-neutral-800 dark:text-neutral-200 text-ellipsis">
                                     {{ Str::words($post->title, 8) }}
                                 </a>
                             </td>
                             <td>
-                                <span class="badge badge-ghost text-zinc-600 dark:text-zinc-400"
+                                <span class="badge badge-ghost text-neutral-600 dark:text-neutral-400"
                                     style="--tw-bg-opacity:.5">
                                     {{ $post->publishedAt ? __('Published') : __('Draft') }}
                                 </span>
                             </td>
-                            <td class="text-zinc-600 dark:text-zinc-400">
+                            <td class="text-neutral-600 dark:text-neutral-400 text-nowrap">
                                 {{ $post->author->name }}
                             </td>
                             <td>
-                                <span class="text-zinc-600 dark:text-zinc-400 text-nowrap">
+                                <span class="text-neutral-600 dark:text-neutral-400 text-nowrap">
                                     {{ $post->updated_at->diffForHumans() }}
                                 </span>
                             </td>
                             <td>
                                 <div class="flex gap-3 w-full justify-end font-semibold">
                                     <a href="{{ route('posts.edit', $post) }}#"
-                                        class="bg-zinc-200 text-zinc-700 dark:bg-zinc-800 shadow rounded w-5 h-5 flex items-center justify-center dark:text-zinc-300 hover:text-info hover:dark:text-info hover:outline hover:outline-info">
+                                        class="bg-neutral-200 text-neutral-700 dark:bg-neutral-800 shadow rounded w-5 h-5 flex items-center justify-center dark:text-neutral-300 hover:text-info hover:dark:text-info hover:outline hover:outline-info">
                                         <i class="bx bx-pencil"></i>
                                     </a>
                                     <a href="#"
-                                        class="bg-zinc-200 text-zinc-700 dark:bg-zinc-800 shadow rounded w-5 h-5 flex items-center justify-center dark:text-zinc-300 hover:text-error hover:dark:text-error hover:outline hover:outline-error"
+                                        class="bg-neutral-200 text-neutral-700 dark:bg-neutral-800 shadow rounded w-5 h-5 flex items-center justify-center dark:text-neutral-300 hover:text-error hover:dark:text-error hover:outline hover:outline-error"
                                         x-on:click.prevent="$dispatch('open-modal', 'confirm-delete-{{ $post->id }}')">
                                         <i class="bx bx-trash-alt"></i>
                                     </a>
                                 </div>
                                 <x-modal name="confirm-delete-{{ $post->id }}" :show="false">
                                     <div class="p-6 flex justify-between items-center">
-                                        <h2 class="text-lg font-medium text-zinc-900 dark:text-zinc-100">
+                                        <h2 class="text-lg font-medium text-neutral-900 dark:text-neutral-100">
                                             {{ __('Are you sure you want to delete this post?') }}
                                         </h2>
                                         <div>
@@ -188,7 +188,7 @@
         </div>
     @else
         <div class="card bg-white dark:bg-base-300 p-3 rounded-lg">
-            <h2 class="text-lg text-zinc-900 dark:text-zinc-100 text-center">
+            <h2 class="text-lg text-neutral-900 dark:text-neutral-100 text-center">
                 {{ __('No posts found') }}
             </h2>
         </div>

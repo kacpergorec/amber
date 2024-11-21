@@ -31,10 +31,10 @@
 </head>
 
 <body class="font-sans text-primary-950 antialiased">
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-zinc-100 gap-8">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-neutral-100 gap-8">
         <div>
             <a href="/" wire:navigate>
-                <x-application-logo class="fill-current text-zinc-500" />
+                <x-application-logo class="fill-current text-neutral-500" />
             </a>
         </div>
 

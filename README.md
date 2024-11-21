@@ -68,10 +68,15 @@ docker-compose exec app npm run build
 
 ```Bash
 make prettier
+
+# Testing (.env.testing)
+make create-testing-db
 make run-tests
 ````
 ```Bash
 docker-compose exec app npm run prettier
+
+# Create testing database manually (.env.testing)
 docker-compose exec app php artisan test --coverage
 ```
 

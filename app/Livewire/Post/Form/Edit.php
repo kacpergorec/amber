@@ -6,10 +6,15 @@ namespace App\Livewire\Post\Form;
 use App\Livewire\Editor;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class Edit extends Component
 {
+    public Post $post;
+
+    #[Rule(['required', 'string', 'min:3'])]
     public string $title = '';
 
     public string $content = '';
@@ -32,11 +37,14 @@ class Edit extends Component
 
     public function save() : void
     {
-        Post::create([
+        $this->validate();
+
+        $this->post->update([
             'title' => $this->title,
             'content' => $this->content,
-            'author_id' => auth()->id(),
         ]);
+
+        $this->dispatch('notify', 'Post updated successfully!');
 
         $this->redirect(route('posts.index'));
     }

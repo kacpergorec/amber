@@ -13,7 +13,6 @@ class Create extends Component
     #[Rule(['required', 'string', 'min:3'])]
     public string $title = '';
 
-    #[Rule(['required', 'string', 'min:3'])]
     public string $content = '';
 
     public function save() : void
@@ -25,6 +24,8 @@ class Create extends Component
             'content' => $this->content,
             'author_id' => auth()->id(),
         ]);
+
+        $this->dispatch('notify', 'Post created successfully!');
 
         $this->redirect(route('posts.index'));
     }

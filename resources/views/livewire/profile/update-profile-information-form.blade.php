@@ -63,11 +63,11 @@ new class extends Component {
 
 <section>
     <header>
-        <h2 class="text-lg font-medium text-zinc-900 dark:text-zinc-100">
+        <h2 class="text-lg font-medium text-neutral-900 dark:text-neutral-100">
             {{ __('Profile Information') }}
         </h2>
 
-        <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+        <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
             {{ __("Update your account's profile information and email address.") }}
         </p>
     </header>
@@ -88,11 +88,11 @@ new class extends Component {
 
             @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !auth()->user()->hasVerifiedEmail())
                 <div>
-                    <p class="text-sm mt-2 text-zinc-800 dark:text-zinc-200">
+                    <p class="text-sm mt-2 text-neutral-800 dark:text-neutral-200">
                         {{ __('Your email address is unverified.') }}
 
                         <button wire:click.prevent="sendVerification"
-                            class="underline text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-zinc-800">
+                            class="underline text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-neutral-800">
                             {{ __('Click here to re-send the verification email.') }}
                         </button>
                     </p>
