@@ -4,7 +4,8 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "tailwind:watch": "filename=$(ls ./public/build/assets/tailwind-*.css | head -n 1) && [ -f ./public/build/assets/tailwind.css ] && rm ./public/build/assets/tailwind.css || true && npx tailwindcss -i resources/css/tailwind.css -o $filename --watch"
   },
   "devDependencies": {
     "@shufo/prettier-plugin-blade": "^1.14.1",

@@ -13,7 +13,7 @@ trait WithPaginationSize
 
     public function initializePaginationSize(): void
     {
-        $this->perPage = (int) request()->query('per_page', 10);
+        $this->perPage = (int) request()->query('per_page', '10');
     }
 
     public function setPerPage(int $perPage): void

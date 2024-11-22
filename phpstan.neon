@@ -1,0 +1,16 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+
+parameters:
+
+    paths:
+        - app/
+
+    # Level 10 is the highest level
+    # TODO: Change this to 10 after addressing all issues–
+    level: 5
+
+#
+#    excludePaths:
+#        - ./*/*/FileToBeExcluded.php

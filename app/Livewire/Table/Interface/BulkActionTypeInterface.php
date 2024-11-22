@@ -3,7 +3,7 @@ declare (strict_types=1);
 
 namespace App\Livewire\Table\Interface;
 
-interface BulkActionTypeInterface
+interface BulkActionTypeInterface extends \BackedEnum
 {
     public function getLabel(): string;
 

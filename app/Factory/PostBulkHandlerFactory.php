@@ -5,6 +5,7 @@ namespace App\Factory;
 
 use App\Enums\PostBulkActionType;
 use App\Handlers\PostBulkDelete;
+use App\Livewire\Table\Interface\BulkActionTypeInterface;
 use Nette\NotImplementedException;
 
 final readonly class PostBulkHandlerFactory
@@ -15,7 +16,7 @@ final readonly class PostBulkHandlerFactory
     {
     }
 
-    public function from(PostBulkActionType $type) // : BulkHandlerInterface
+    public function from(BulkActionTypeInterface $type) // TODO: BulkHandlerInterface
     {
         return match ($type) {
             PostBulkActionType::DELETE => $this->postBulkDelete,
