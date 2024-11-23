@@ -25,7 +25,7 @@ class Create extends Component
             'author_id' => auth()->id(),
         ]);
 
-        $this->dispatch('notify', 'Post created successfully!');
+        $this->dispatch('notify', 'success', 'Post created successfully!');
 
         $this->redirect(route('posts.index'));
     }

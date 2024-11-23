@@ -9,6 +9,8 @@ class Editor extends Component
 {
     public const EVENT_VALUE_UPDATED = 'editor_value_updated';
 
+    public const EVENT_TRIGGER_SAVE = 'editor_trigger_save';
+
     public function __construct(
         public string $value = '',
         public ?string $name = null

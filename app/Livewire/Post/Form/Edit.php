@@ -44,9 +44,7 @@ class Edit extends Component
             'content' => $this->content,
         ]);
 
-        $this->dispatch('notify', 'Post updated successfully!');
-
-        $this->redirect(route('posts.index'));
+        $this->dispatch('notify','success', 'Post updated successfully!');
     }
 
     public function render() : View

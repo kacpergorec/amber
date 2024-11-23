@@ -3,7 +3,8 @@
 
 @import 'boxicons/css/boxicons.min.css';
 
-$subtleFactor: 20;
+
+// Overrides
 
 @each $color in [ 'success', 'error', 'warning', 'info', 'primary', 'secondary']
 {
@@ -14,7 +15,7 @@ $subtleFactor: 20;
   }
 
   .btn-#{$color}.btn-subtle {
-    @apply bg-opacity-10 border-opacity-15
+    @apply bg-opacity-15 border-opacity-15
         hover:bg-opacity-100 hover:bg-white hover:border-opacity-100 hover:border-white hover:text-neutral-900
         dark:hover:bg-base-300 dark:hover:border-base-300 dark:hover:text-neutral-100;
   }

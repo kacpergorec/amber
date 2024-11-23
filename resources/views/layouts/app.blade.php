@@ -48,11 +48,12 @@
         <livewire:notification />
         <livewire:components.top-bar />
         <livewire:components.side-bar />
-        <main class="mt-12 transition-all"
+        <main id="main" class="mt-12 transition-all"
             :class="{
                 'md:ml-52': !sidebarShrink,
-                'md:ml-16': sidebarShrink
-            }">
+                'md:ml-16': sidebarShrink,
+            }"
+        >
             {{ $slot }}
         </main>
     </div>

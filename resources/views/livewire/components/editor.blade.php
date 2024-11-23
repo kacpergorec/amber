@@ -29,6 +29,13 @@
                 @this.
                 set('value', value)
             })
+
+            document.addEventListener('keydown', function(event) {
+                if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+                    event.preventDefault();
+                    Livewire.dispatch('{{\App\Livewire\Editor::EVENT_TRIGGER_SAVE}}');
+                }
+            });
         })
     </script>
 </div>

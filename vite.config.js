@@ -13,4 +13,11 @@ export default defineConfig({
       refresh: true,
     }),
   ],
+    build: {
+        minify: false,
+        terserOptions: {
+            compress: false,
+            mangle: false,
+        },
+    },
 });
