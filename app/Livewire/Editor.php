@@ -3,16 +3,17 @@
 namespace App\Livewire;
 
 use Illuminate\Contracts\View\View;
+use Livewire\Attributes\Modelable;
+use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
 class Editor extends Component
 {
-    public const EVENT_VALUE_UPDATED = 'editor_value_updated';
-
     public const EVENT_TRIGGER_SAVE = 'editor_trigger_save';
 
     public function __construct(
-        public string $value = '',
+        #[Modelable]
+        public string  $content = '',
         public ?string $name = null
     )
     {
@@ -26,12 +27,6 @@ class Editor extends Component
         $this->sanitizeHtml();
     }
 
-    public function updatedValue(): void
-    {
-        $this->sanitizeHtml();
-        $this->dispatch(self::EVENT_VALUE_UPDATED, $this->value, $this->name);
-    }
-
     public function render(): View
     {
         return view('livewire.components.editor');
@@ -39,6 +34,6 @@ class Editor extends Component
 
     private function sanitizeHtml() : void
     {
-        $this->value = strip_tags($this->value, '<h1><h2><h3><h4><h5><h6><p><a><ul><ol><li><strong><em><del><ins><code><pre><blockquote><figure><img><video><audio><table><thead><tbody><tfoot><tr><th><td><hr><br><span>');
+        $this->content = strip_tags($this->content, '<h1><h2><h3><h4><h5><h6><p><a><ul><ol><li><strong><em><del><ins><code><pre><blockquote><figure><img><video><audio><table><thead><tbody><tfoot><tr><th><td><hr><br><div></div><span>');
     }
 }

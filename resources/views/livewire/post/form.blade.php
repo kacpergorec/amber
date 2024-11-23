@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-            <livewire:editor :value="$content"/>
+            <livewire:editor wire:model="content" />
 
             @error('content')
             <em class="text-error">{{ $message }}</em>

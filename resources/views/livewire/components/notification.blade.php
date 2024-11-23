@@ -27,7 +27,7 @@
 
                         @default
                         @case('info')
-                            <i class='bx bx-info'></i>
+                            <i class='bx bx-info-circle'></i>
                     @endswitch
                 </div>
                 <div class="message">

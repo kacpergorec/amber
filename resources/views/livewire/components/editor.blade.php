@@ -1,19 +1,21 @@
 <div wire:ignore>
     <div id="{{ $name }}">
-        {!! $value !!}
+        {!! $content !!}
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Initialize Quill
             const quill = new Quill('#{{ $name }}', {
                 theme: 'snow',
                 modules: {
                     toolbar: [
-                        [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
-                        [{size: []}],
-                        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                        [{'list': 'ordered'}, {'list': 'bullet'},
-                            {'indent': '-1'}, {'indent': '+1'}],
-                        ['link', 'image', 'video'],
+                        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+                        ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block'],
+                        ['link', 'image', 'video', 'formula'],
+                        [{'list': 'ordered'}, {'list': 'bullet'}, {'list': 'check'}],
+                        [{'indent': '-1'}, {'indent': '+1'}],
+                        [{'align': []}],
                         ['clean']
                     ],
                     clipboard: {
@@ -22,18 +24,20 @@
                 }
             });
 
+            // Add markdown support
             const quillMarkdown = new QuillMarkdown(quill)
 
-            quill.on('text-change', function() {
-                let value = document.getElementsByClassName('ql-editor')[0].innerHTML;
-                @this.
-                set('value', value)
+            // Set content
+            quill.on('text-change', function () {
+                let html = document.getElementsByClassName('ql-editor')[0].innerHTML;
+                @this.set('content', html)
             })
 
-            document.addEventListener('keydown', function(event) {
+            // Save on ctrl+s
+            document.addEventListener('keydown', function (event) {
                 if ((event.ctrlKey || event.metaKey) && event.key === 's') {
-                    event.preventDefault();
                     Livewire.dispatch('{{\App\Livewire\Editor::EVENT_TRIGGER_SAVE}}');
+                    event.preventDefault();
                 }
             });
         })
