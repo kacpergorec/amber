@@ -2,16 +2,15 @@
 
 namespace App\Livewire\Post;
 
-use App\Enums\PostBulkActionType;
-use App\Handlers\PostBulkOperator;
-use App\Handlers\PostDelete;
 use App\Livewire\Table\Traits\WithBulkSelection;
 use App\Livewire\Table\Traits\WithPaginationSize;
 use App\Livewire\Table\Traits\WithSortableColumns;
-use App\Models\Post;
+use App\Modules\Post\Enums\PostBulkActionType;
+use App\Modules\Post\Handlers\PostBulkOperator;
+use App\Modules\Post\Handlers\PostDelete;
+use App\Modules\Post\Models\Post;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 

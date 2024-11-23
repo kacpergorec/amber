@@ -3,7 +3,7 @@ declare (strict_types=1);
 
 namespace App\Livewire\Post\Form;
 
-use App\Models\Post;
+use App\Modules\Post\Models\Post;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Rule;
 use Livewire\Component;

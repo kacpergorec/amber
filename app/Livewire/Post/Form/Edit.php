@@ -3,13 +3,10 @@ declare (strict_types=1);
 
 namespace App\Livewire\Post\Form;
 
-use App\Livewire\Editor;
-use App\Models\Post;
+use App\Modules\Post\Models\Post;
 use Illuminate\Contracts\View\View;
-use Livewire\Attributes\Reactive;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
-use Symfony\Contracts\Service\Attribute\Required;
 
 class Edit extends Component
 {

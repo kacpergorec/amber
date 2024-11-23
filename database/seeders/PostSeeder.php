@@ -2,13 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
-use App\Models\User;
-use Database\Factories\PostFactory;
+use App\Modules\Auth\Models\User;
+use App\Modules\Post\Models\Post;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
-use PharIo\Manifest\Author;
-use Symfony\Component\Uid\Uuid;
 
 class PostSeeder extends Seeder
 {

@@ -13,7 +13,7 @@ class Editor extends Component
 
     public function __construct(
         #[Modelable]
-        public string  $content = '',
+        public ?string  $content = null,
         public ?string $name = null
     )
     {

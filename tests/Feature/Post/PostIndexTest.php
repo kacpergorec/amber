@@ -2,13 +2,11 @@
 
 namespace Tests\Feature\Post;
 
-use App\Enums\PostBulkActionType;
-use App\Handlers\PostBulkOperator;
-use App\Models\Post;
-use App\Models\User;
+use App\Modules\Auth\Models\User;
+use App\Modules\Post\Enums\PostBulkActionType;
+use App\Modules\Post\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
-use Livewire\Volt\Volt;
 use Tests\TestCase;
 
 class PostIndexTest extends TestCase

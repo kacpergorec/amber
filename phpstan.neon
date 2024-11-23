@@ -9,7 +9,7 @@ parameters:
 
     # Level 10 is the highest level
     # TODO: Change this to 10 after addressing all issues–
-    level: 5
+    level: 8
 
 #
 #    excludePaths:
