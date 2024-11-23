@@ -1,11 +1,5 @@
 <x-app-layout>
     <div class="mx-auto px-0 sm:px-6 lg:px-8 pb-8">
-        <div class="flex items-center gap-3">
-            <h1 class="text-3xl my-3 sm:my-6 px-2 sm:px-0">
-                {{ __('Create new Post') }}
-            </h1>
-        </div>
-
         <livewire:post.form.create />
     </div>
 </x-app-layout>

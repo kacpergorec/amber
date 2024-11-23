@@ -1,3 +1,9 @@
+@php
+function routeWithin(string $route){
+    return str_starts_with(request()->route()->getName(), $route);
+}
+@endphp
+
 <aside id="side-bar"
     :class="{
         'w-52': !sidebarShrink,
@@ -9,12 +15,12 @@
     <nav class="flex flex-col h-full pt-12 mb-12">
         <ul>
             <li class="pt-3 px-3">
-                <x-side-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" :icon="'bx bx-home'" wire:navigate>
+                <x-side-nav-link :href="route('dashboard')" :active="routeWithin('dashboard')" :icon="'bx bx-home'" wire:navigate>
                     {{ __('Dashboard') }}
                 </x-side-nav-link>
             </li>
             <li class="pt-3 px-3">
-                <x-side-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')" :icon="'bx bx-news'" wire:navigate>
+                <x-side-nav-link :href="route('posts.index')" :active="routeWithin('posts')" :icon="'bx bx-news'" wire:navigate>
                     {{ __('Posts') }}
                 </x-side-nav-link>
             </li>
